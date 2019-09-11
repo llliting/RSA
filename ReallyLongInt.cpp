@@ -12,36 +12,45 @@ class ReallyLongInt{
         vector<bool> *digits;
         unsigned int size;
         bool isNeg;
+        bool greater(const ReallyLongInt& other) const{
+            
+        }
+
+
 
 
     public:
-    ReallyLongInt(){
+        ReallyLongInt(){
 
-    }
+        }
 
-    ReallyLongInt(long long num){
+        ReallyLongInt(long long num){
 
-    }
+        }
 
-    ReallyLongInt(const string& numStr){
+        ReallyLongInt(const string& numStr){
 
-    }
+        }
 
-    ReallyLongInt(const ReallyLongInt& other){
+        ReallyLongInt(const ReallyLongInt& other){
 
-    }
+        }
 
-    string toString() const{
+        string toString() const{
 
-    }
+        }
 
-    string toStringBinary() const{
+        string toStringBinary() const{
 
-    }
+        }
 
-    ~ReallyLongInt(){
+        bool equal(const ReallyLongInt& other) const{
 
-    }
+        }
+
+        ~ReallyLongInt(){
+
+        }
 
 };
 
