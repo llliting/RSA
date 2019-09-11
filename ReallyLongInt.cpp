@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string.h>
-
+#include "ReallyLongInt.hpp"
 
 using namespace std;
 
@@ -36,7 +36,7 @@ class ReallyLongInt{
     }
 
     string toStringBinary() const{
-        
+
     }
 
     ~ReallyLongInt(){
