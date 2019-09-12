@@ -10,6 +10,6 @@ ReallyLongInt: ReallyLongInt.cpp
 	$(CC) $(FLAGS) -o ReallyLongInt.exe ReallyLongInt.cpp
 
 clean:
-	rm *.o;
+	#rm *.o;
 	rm ReallyLongInt.exe;
 
