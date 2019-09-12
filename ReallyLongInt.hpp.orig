@@ -1,0 +1,37 @@
+<<<<<<< HEAD
+
+
+#ifndef REALLYLONGINT_H
+#define REALLYLONGINT_H
+=======
+#ifndef ReallyLongInt
+#define ReallyLongInt
+>>>>>>> 3fa29cfa0c7f0b323c84abe9af66c197316a7ca7
+
+#include <iostream>
+#include <vector>
+#include <string.h>
+
+using namespace std;
+
+
+class ReallyLongInt
+{
+    private:
+        vector<bool> *digits;
+        unsigned int size;
+        bool isNeg;
+        bool greater(const ReallyLongInt& other) const;
+
+    public:
+        ReallyLongInt();
+        ReallyLongInt(long long num);
+        ReallyLongInt(const string& numStr);
+        ReallyLongInt(const ReallyLongInt& other);
+        string toString() const;
+        string toStringBinary() const;
+        bool equal(const ReallyLongInt& other) const;
+        ~ReallyLongInt();
+};
+
+#endif 
