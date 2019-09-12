@@ -13,7 +13,7 @@ using namespace std;
 class ReallyLongInt
 {
     private:
-        vector<bool> *digits;
+        vector<bool>* digits;
         unsigned int size;
         bool isNeg;
         bool greater(const ReallyLongInt& other) const;

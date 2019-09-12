@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <string.h>
+#include <sstream>
 #include "ReallyLongInt.hpp"
+
 
 using namespace std;
 
@@ -13,6 +15,15 @@ ReallyLongInt::ReallyLongInt(){
     digits[0] = newNum;
 }
 
+ReallyLongInt::ReallyLongInt(long long num){
+
+}
+
+
+string ReallyLongInt::toString() const{
+    for(auto&& i : digits[0])
+    return 
+}
 
 
 bool ReallyLongInt::greater(const ReallyLongInt& other) const{
@@ -21,6 +32,8 @@ bool ReallyLongInt::greater(const ReallyLongInt& other) const{
 
 
 int main(){
+    ReallyLongInt x;
+    cout << x << endl;
     return 0;
 }
 
