@@ -1,4 +1,4 @@
-//#ifndef ReallyLongInt
+#ifndef ReallyLongInt
 #define ReallyLongInt
 
 #include <iostream>
