@@ -7,8 +7,10 @@ using namespace std;
 
 
 ReallyLongInt::ReallyLongInt(){
-    size = 1;
-    digits[0] = new vector<bool>(0); 
+    size = 16;
+    vector<bool> newNum;
+    newNum.push_back(0);
+    digits[0] = newNum;
 }
 
 
@@ -16,3 +18,9 @@ ReallyLongInt::ReallyLongInt(){
 bool ReallyLongInt::greater(const ReallyLongInt& other) const{
     return true;
 }
+
+
+int main(){
+    return 0;
+}
+
