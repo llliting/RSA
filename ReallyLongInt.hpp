@@ -1,12 +1,17 @@
-//#ifndef ReallyLongInt
-#define ReallyLongInt
+
+
+#ifndef REALLYLONGINT_H
+#define REALLYLONGINT_H
 
 #include <iostream>
 #include <vector>
 #include <string.h>
 
+using namespace std;
 
-class ReallyLongInt{
+
+class ReallyLongInt
+{
     private:
         vector<bool> *digits;
         unsigned int size;
@@ -23,3 +28,5 @@ class ReallyLongInt{
         bool equal(const ReallyLongInt& other) const;
         ~ReallyLongInt();
 };
+
+#endif 

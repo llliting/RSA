@@ -6,7 +6,7 @@ COVERAGE = --coverage
 
 all: ReallyLongInt
 
-ReallyLongInt: ReallyLongInt.cpp ReallyLongInt.hpp
+ReallyLongInt: ReallyLongInt.cpp 
 	$(CC) $(FLAGS) -o ReallyLongInt.exe ReallyLongInt.cpp
 
 clean:
