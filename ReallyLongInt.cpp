@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string.h>
+#include <string>
 #include "ReallyLongInt.hpp"
 
 using namespace std;
@@ -18,6 +19,12 @@ ReallyLongInt::ReallyLongInt(long long num){
     while(num >= 1<<size){
         size = size * 2;
     }
+
+    //update isNeg
+    if(num >= 0)
+        isNeg = false;
+    else
+        isNeg = true;
 
     //create the vector
     vector<bool> newNum(size, false);
@@ -45,6 +52,14 @@ ReallyLongInt::ReallyLongInt(long long num){
 }
 
 
+ReallyLongInt::ReallyLongInt(const string &numStr){
+    ReallyLongInt(stoll(numStr));
+}
+
+ReallyLongInt::ReallyLongInt(const ReallyLongInt &other){
+    //vector<bool> copy(other);
+
+}
 
 
 
