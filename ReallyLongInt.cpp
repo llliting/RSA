@@ -40,9 +40,6 @@ ReallyLongInt::ReallyLongInt(long long num){
     vector<bool> newNum(size-bits, false);
     digits = &newNum;
 
-
-
-
     //fill the vector
     while(num != 0){
         if(num%2 == 1)
