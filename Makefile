@@ -21,9 +21,17 @@ catchdebug: ReallyLongInt_TEST.cpp ReallyLongInt.o
 ReallyLongInt: 
 	$(CC) $(FLAGS) -o ReallyLongInt.exe ReallyLongInt.cpp
 
+cleantest:
+	rm *.gcov;
+	rm *.gcda;
+	rm *.gcno;
+	rm a.out;
+
 clean:
-	#rm *.o;
+	rm *.o;
 	rm ReallyLongInt.exe;
-	#rm main;
+	rm main;
+
+
 
 

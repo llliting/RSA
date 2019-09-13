@@ -5,6 +5,8 @@
 
 #include <iostream>
 #include <vector>
+#include <bitset>
+
 #include <string.h>
 
 using namespace std;
@@ -25,11 +27,12 @@ class ReallyLongInt
         ReallyLongInt(long long num);
         ReallyLongInt(const string &numStr);
         ReallyLongInt(const ReallyLongInt &other);
+        int getSize();
         string toString() const;
         string toStringBinary() const;
         bool equal(const ReallyLongInt& other) const;
         bool greater(const ReallyLongInt& other) const;
-        ~ReallyLongInt();
+        //~ReallyLongInt();
 };
 
 #endif 
