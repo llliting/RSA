@@ -26,11 +26,7 @@ ReallyLongInt::ReallyLongInt(long long num){
     else
         isNeg = true;
 
-    //create the vector
-    vector<bool> newNum(size, false);
-    digits = &newNum;
-
-
+    
     //calculate the bits of num
     int bits = 0;
     int currSum = 1;
@@ -39,14 +35,20 @@ ReallyLongInt::ReallyLongInt(long long num){
         bits ++;
     }
 
+
+    //create the vector
+    vector<bool> newNum(size-bits, false);
+    digits = &newNum;
+
+
+
+
     //fill the vector
-    int i = size - bits;
     while(num != 0){
         if(num%2 == 1)
-            newNum[i] = true;
+            newNum.push_back(true);
         else
-            newNum[i] = false;
-        i ++;
+            newNum.push_back(false);
         num /= 2;
     }
 }
