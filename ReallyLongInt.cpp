@@ -71,6 +71,14 @@ string ReallyLongInt::toString() const{
 }
 
 
+string ReallyLongInt::toStringBinary() const{
+    char string[size];
+    for(size_t i = 0; i < size; i++){
+        string[i] = *digits[i];
+    }
+}
+
+
 bool ReallyLongInt::greater(const ReallyLongInt& other) const{
     return true;
 
@@ -78,7 +86,7 @@ bool ReallyLongInt::greater(const ReallyLongInt& other) const{
 
 
 int main(){
-    ReallyLongInt x;
+    ReallyLongInt* x = new ReallyLongInt();
     //cout << x << endl;
     return 0;
 }
