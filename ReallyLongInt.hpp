@@ -3,7 +3,7 @@
 #define REALLYLONGINT_H
 
 #include <string>
-#include <math.h>
+#include <cmath>
 #include <iostream>
 #include <vector>
 #include <bitset>
@@ -20,7 +20,6 @@ class ReallyLongInt
         unsigned int size;
         bool isNeg;
         bool absGreater(const ReallyLongInt& other) const;
-        void init(long long num);
         
 
     //public:
