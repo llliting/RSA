@@ -45,7 +45,15 @@ ReallyLongInt::~ReallyLongInt(){
 
 
 bool ReallyLongInt::equal(const ReallyLongInt& other) const{
-
+    if(isNeg != other.isNeg)
+        return false;
+    else{
+        for(unsigned int i = 0; i < size; i ++)
+            if((*digits)[i] != (*(other.digits))[i])
+                return false;  
+        return true;
+    }
+    
 }
 
 bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
@@ -60,10 +68,19 @@ bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
             else if(((*digits)[i] == 0) && ((*(other.digits))[i] == 1))
                 return 0;
         }
+        return 0;
     }
-    return 0;
+    
 }
 
+bool ReallyLongInt::greater(const ReallyLongInt& other) const{
+    if(isNeg == true && other.isNeg == false)
+        return false;
+    else if(isNeg == false && other.isNeg == true)
+        return true;
+    else 
+        return (isNeg == true ? !absGreater(other) : absGreater(other));
+}
 
 
 string ReallyLongInt::toString() const{
@@ -91,7 +108,7 @@ int main(){
     cin >> y;
     ReallyLongInt b(y);
     cout << a.size << " " << (*(a.digits))[0] << " " << a.isNeg << endl;
-    cout << "absgreater" << a.absGreater(b)<< endl;
+    cout << "greater" << a.absGreater(b)<< endl;
     cout << a.toStringBinary() << endl;
     cout << a.toString() << endl;
     return 0;
