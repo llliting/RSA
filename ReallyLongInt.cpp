@@ -24,16 +24,9 @@ ReallyLongInt::ReallyLongInt(long long num){
     }
     //initialize and update size
     size = 16;
-    long long max = pow(2,size-1);
-    cout << "s: " << size << endl;
-    cout << " " << max << endl;
-    int i = 0;
-    while(num >= max){
-        i ++;
-        
-        cout << i << endl;
-        max = max * pow(2, size-1);
-        O((n 2^n)!
+    unsigned int bits = log2(num);
+    //int i = 0;
+    while(bits >= size){
         size = size * 2;
     }
     //fill the digits
@@ -80,7 +73,6 @@ bool ReallyLongInt::equal(const ReallyLongInt& other) const{
                 return false;  
         return true;
     }
-    
 }
 
 bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
