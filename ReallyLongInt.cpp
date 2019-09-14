@@ -30,8 +30,10 @@ ReallyLongInt::ReallyLongInt(long long num){
     int i = 0;
     while(num >= max){
         i ++;
+        
         cout << i << endl;
         max = max * pow(2, size-1);
+        O((n 2^n)!
         size = size * 2;
     }
     //fill the digits
