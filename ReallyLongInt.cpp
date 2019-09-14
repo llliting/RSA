@@ -2,6 +2,7 @@
 #include <vector>
 #include <string.h>
 #include <string>
+//#include <cstring>
 #include "ReallyLongInt.hpp"
 #include <cmath>
 
@@ -23,9 +24,14 @@ ReallyLongInt::ReallyLongInt(long long num){
     }
     //initialize and update size
     size = 16;
-    long long max = 1 << size;
+    long long max = pow(2,size-1);
+    cout << "s: " << size << endl;
+    cout << " " << max << endl;
+    int i = 0;
     while(num >= max){
-        max = max << size;
+        i ++;
+        cout << i << endl;
+        max = max * pow(2, size-1);
         size = size * 2;
     }
     //fill the digits
@@ -38,6 +44,25 @@ ReallyLongInt::ReallyLongInt(long long num){
         index ++;
     }
 }
+/*
+ReallyLongInt::ReallyLongInt(const string& numStr){
+    isNeg = (numStr[0] == '-' ? 1 : 0);
+    unsigned int length = (isNeg ? (numStr.length() - 1) : numStr.length();
+    for(unsigned int i = length-1; i >= 0; i --)
+
+
+    //size = isNeg ? numStr.length()
+}
+*/
+
+ReallyLongInt::ReallyLongInt(const ReallyLongInt& other){
+    size = other.size;
+    digits = new vector<bool> (size, false);
+    isNeg = other.isNeg;
+    for(unsigned int i = 0; i < size; i ++)
+        (*digits)[i] = (*(other.digits))[i];
+}
+
 
 ReallyLongInt::~ReallyLongInt(){
     delete digits;
@@ -100,17 +125,24 @@ string ReallyLongInt::toStringBinary() const{
 
 
 int main(){
+    
     long long x, y;
     cout << "type in a number : ";
     cin >> x;
     ReallyLongInt a(x);
-    cout << "type in a number : ";
-    cin >> y;
-    ReallyLongInt b(y);
+   // cout << "type in a number : ";
+   // cin >> y;
+   // ReallyLongInt b(y);
+    
+  //  ReallyLongInt c(-200);
+   // ReallyLongInt a(c);
     cout << a.size << " " << (*(a.digits))[0] << " " << a.isNeg << endl;
-    cout << "greater" << a.absGreater(b)<< endl;
     cout << a.toStringBinary() << endl;
+   //     cout << b.toStringBinary() << endl;
+
     cout << a.toString() << endl;
+  // cout << "greater" << a.absGreater(b)<< endl;
+    
     return 0;
 }
 

@@ -6,7 +6,7 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
-#include <bitset>
+#include <cstring>
 #include <string.h>
 
 using namespace std;
