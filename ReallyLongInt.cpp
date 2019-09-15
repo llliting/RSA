@@ -25,7 +25,6 @@ ReallyLongInt::ReallyLongInt(long long num){
     //initialize and update size
     size = 16;
     unsigned int bits = log2(num);
-    //int i = 0;
     while(bits >= size){
         size = size * 2;
     }
