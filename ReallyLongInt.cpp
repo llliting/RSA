@@ -5,6 +5,7 @@
 //#include <cstring>
 #include "ReallyLongInt.hpp"
 #include <cmath>
+#include <stack>
 
 using namespace std;
 
@@ -38,16 +39,31 @@ ReallyLongInt::ReallyLongInt(long long num){
         index ++;
     }
 }
-/*
+
 ReallyLongInt::ReallyLongInt(const string& numStr){
     isNeg = (numStr[0] == '-' ? 1 : 0);
-    unsigned int length = (isNeg ? (numStr.length() - 1) : numStr.length();
-    for(unsigned int i = length-1; i >= 0; i --)
-
-
+   // unsigned int start = (isNeg ? 1 : 0);
+   // char curr = ;
+   // stack <int> s;
+   // while()
+    long long num = stoll(numStr);
+    //initialize and update size
+    size = 16;
+    unsigned int bits = log2(num);
+    while(bits >= size){
+        size = size * 2;
+    }
+    digits = new vector<bool> (size, false);
+    unsigned int index = 0;
+    while(num > 0){
+        if(num%2 == 1)
+            (*digits)[index] = 1;
+        num /= 2;
+        index ++;
+    }
     //size = isNeg ? numStr.length()
 }
-*/
+
 
 ReallyLongInt::ReallyLongInt(const ReallyLongInt& other){
     size = other.size;
