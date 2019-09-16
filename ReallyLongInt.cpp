@@ -36,66 +36,14 @@ void ReallyLongInt::init(long long num){
 
 ReallyLongInt::ReallyLongInt(){
     init(0);
-    /*
-    size = 16;
-    digits = new vector<bool> (16, false);
-    isNeg = false;
-    */
 }
 
 ReallyLongInt::ReallyLongInt(long long num){
     init(num);
-    /*
-    //update isNeg
-    if(num >= 0)
-        isNeg = false;
-    else{
-        isNeg = true;
-        num *= -1;
-    }
-    //initialize and update size
-    size = 16;
-    unsigned int bits = log2(num);
-    while(bits >= size){
-        size = size * 2;
-    }
-    //fill the digits
-    digits = new vector<bool> (size, false);
-    unsigned int index = 0;
-    while(num > 0){
-        if(num%2 == 1)
-            (*digits)[index] = 1;
-        num /= 2;
-        index ++;
-    }
-    */
 }
 
 ReallyLongInt::ReallyLongInt(const string& numStr){
     init(stoll(numStr));
-    /*a.toStringBinary
-    isNeg = (numStr[0] == '-' ? 1 : 0);a.toStringBinary
-   // unsigned int start = (isNeg ? 1 : 0);a.toStringBinary
-   // char curr = ;a.toStringBinary
-   // stack <int> s;a.toStringBinary
-   // while()a.toStringBinary
-    long long num = stoll(numStr);a.toStringBinary
-    //initialize and update sizea.toStringBinary
-    size = 16;a.toStringBinary
-    unsigned int bits = log2(num);a.toStringBinary
-    while(bits >= size){a.toStringBinary
-        size = size * 2;a.toStringBinary
-    }a.toStringBinary
-    digits = new vector<bool> (size, false);a.toStringBinary
-    unsigned int index = 0;
-    while(num > 0){
-        if(num%2 == 1)
-            (*digits)[index] = 1;
-        num /= 2;
-        index ++;
-    }
-    //size = isNeg ? numStr.length()
-    */
 }
 
 
@@ -175,8 +123,8 @@ int main(){
 //    cout << "type in a number : ";
   //  cin >> x;
   // x = 10000;
-    ReallyLongInt a(0);
-    cout << a.toStringBinary() << endl;
+    ReallyLongInt* a = new ReallyLongInt();
+    cout << a->toStringBinary() << endl;
  //  cout << "type in a number : ";
    //cin >> y;
    //ReallyLongInt b(y);
