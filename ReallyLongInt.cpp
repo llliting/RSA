@@ -8,14 +8,7 @@
 #include <stack>
 
 using namespace std;
-
-ReallyLongInt::ReallyLongInt(){
-    size = 16;
-    digits = new vector<bool> (16, false);
-    isNeg = false;
-}
-
-ReallyLongInt::ReallyLongInt(long long num){
+void ReallyLongInt::init(long long num){
     //update isNeg
     if(num >= 0)
         isNeg = false;
@@ -40,19 +33,33 @@ ReallyLongInt::ReallyLongInt(long long num){
     }
 }
 
-ReallyLongInt::ReallyLongInt(const string& numStr){
-    isNeg = (numStr[0] == '-' ? 1 : 0);
-   // unsigned int start = (isNeg ? 1 : 0);
-   // char curr = ;
-   // stack <int> s;
-   // while()
-    long long num = stoll(numStr);
+
+ReallyLongInt::ReallyLongInt(){
+    init(0);
+    /*
+    size = 16;
+    digits = new vector<bool> (16, false);
+    isNeg = false;
+    */
+}
+
+ReallyLongInt::ReallyLongInt(long long num){
+    init(num);
+    /*
+    //update isNeg
+    if(num >= 0)
+        isNeg = false;
+    else{
+        isNeg = true;
+        num *= -1;
+    }
     //initialize and update size
     size = 16;
     unsigned int bits = log2(num);
     while(bits >= size){
         size = size * 2;
     }
+    //fill the digits
     digits = new vector<bool> (size, false);
     unsigned int index = 0;
     while(num > 0){
@@ -61,7 +68,34 @@ ReallyLongInt::ReallyLongInt(const string& numStr){
         num /= 2;
         index ++;
     }
+    */
+}
+
+ReallyLongInt::ReallyLongInt(const string& numStr){
+    init(stoll(numStr));
+    /*a.toStringBinary
+    isNeg = (numStr[0] == '-' ? 1 : 0);a.toStringBinary
+   // unsigned int start = (isNeg ? 1 : 0);a.toStringBinary
+   // char curr = ;a.toStringBinary
+   // stack <int> s;a.toStringBinary
+   // while()a.toStringBinary
+    long long num = stoll(numStr);a.toStringBinary
+    //initialize and update sizea.toStringBinary
+    size = 16;a.toStringBinary
+    unsigned int bits = log2(num);a.toStringBinary
+    while(bits >= size){a.toStringBinary
+        size = size * 2;a.toStringBinary
+    }a.toStringBinary
+    digits = new vector<bool> (size, false);a.toStringBinary
+    unsigned int index = 0;
+    while(num > 0){
+        if(num%2 == 1)
+            (*digits)[index] = 1;
+        num /= 2;
+        index ++;
+    }
     //size = isNeg ? numStr.length()
+    */
 }
 
 
@@ -96,12 +130,16 @@ bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
     else if(other.size < size)
         return 1;
     else{
-        for(unsigned int i = size - 1; i >= 0; i --){
+        for(unsigned int i = size - 1; i > 0; i --){
             if(((*digits)[i] == 1) && ((*(other.digits))[i] == 0))            
                 return 1;
             else if(((*digits)[i] == 0) && ((*(other.digits))[i] == 1))
                 return 0;
         }
+        if(((*digits)[0] == 1) && ((*(other.digits))[0] == 0))
+            return 1;
+        else if(((*digits)[0] == 0) && ((*(other.digits))[0] == 1))
+            return 0;
         return 0;
     }
     
@@ -116,12 +154,10 @@ bool ReallyLongInt::greater(const ReallyLongInt& other) const{
         return (isNeg == true ? !absGreater(other) : absGreater(other));
 }
 
-
 string ReallyLongInt::toString() const{
-    long long num = 0;
-    for(unsigned int i = 0; i < size; i++){
+    unsigned long long num = 0;
+    for(unsigned int i = 0; i < size; i++)
         num += ( (*digits)[i] == 1 ? pow(2, i):0);
-    }
     return (isNeg ? ("-" + to_string(num)) : to_string(num));
 }
 
@@ -136,21 +172,23 @@ string ReallyLongInt::toStringBinary() const{
 int main(){
     
     long long x, y;
-    cout << "type in a number : ";
-    cin >> x;
-    ReallyLongInt a(x);
-   // cout << "type in a number : ";
-   // cin >> y;
-   // ReallyLongInt b(y);
-    
-  //  ReallyLongInt c(-200);
-   // ReallyLongInt a(c);
-    cout << a.size << " " << (*(a.digits))[0] << " " << a.isNeg << endl;
+//    cout << "type in a number : ";
+  //  cin >> x;
+  // x = 10000;
+    ReallyLongInt a(0);
     cout << a.toStringBinary() << endl;
-   //     cout << b.toStringBinary() << endl;
+ //  cout << "type in a number : ";
+   //cin >> y;
+   //ReallyLongInt b(y);
+   // ReallyLongInt a(c);
+   // cout << a.size << " " << (*(a.digits))[0] << " " << a.isNeg << endl;
+    //ReallyLongInt b(a);
+      //  cout << b.toStringBinary() << endl;
 
-    cout << a.toString() << endl;
-  // cout << "greater" << a.absGreater(b)<< endl;
+
+  //  cout << a.toString() << endl;
+  //  cout << "equal" << a.equal(b) << endl;
+   //cout << "greater" << " "<<  a.absGreater(b)<< endl;
     
     return 0;
 }
