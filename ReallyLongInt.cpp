@@ -120,12 +120,13 @@ string ReallyLongInt::toStringBinary() const{
 int main(){
     
     long long x, y;
-//    cout << "type in a number : ";
-  //  cin >> x;
+ cout << "type in a number : ";
+ cin >> x;
   // x = 10000;
-    ReallyLongInt* a = new ReallyLongInt();
-    cout << a->toStringBinary() << endl;
- //  cout << "type in a number : ";
+  ReallyLongInt a("2");
+    //ReallyLongInt* a = new ReallyLongInt(x);
+    cout << a.toStringBinary() << endl;
+   //cout << "type in a number : ";
    //cin >> y;
    //ReallyLongInt b(y);
    // ReallyLongInt a(c);

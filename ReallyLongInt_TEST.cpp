@@ -16,17 +16,9 @@ TEST_CASE("TESTING ReallyLongInt Class")
     
       //IF TEST FAIL -- STOP ALL TESTING
       REQUIRE(test_ReallyLongInt->size == 16); // Check if true
-      REQUIRE_FALSE(test_ReallyLongInt->size != 16); //Check if false
-
       REQUIRE(test_ReallyLongInt->isNeg == false);
-      REQUIRE_FALSE(test_ReallyLongInt->size != true); //Check if false
-
       REQUIRE(!(*(test_ReallyLongInt->digits)).empty());
-      REQUIRE_FALSE((*(test_ReallyLongInt->digits)).empty()); //Check if false
-
       REQUIRE((*(test_ReallyLongInt->digits)).size() == 16);
-      REQUIRE_FALSE((*(test_ReallyLongInt->digits)).size()!=16); //Check if false
-
       delete test_ReallyLongInt;
     }
 
