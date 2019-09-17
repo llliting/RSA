@@ -65,18 +65,14 @@ TEST_CASE("TESTING ReallyLongInt Class")
     {
      
       ReallyLongInt other("-4294967296");
-      test_ReallyLongInt = new ReallyLongInt(other);
-
+      ReallyLongInt test(other);
       INFO("Using copy constructor") //Displayed if fails
+      REQUIRE(test.size ==64); // Check if true
+      REQUIRE(test.isNeg == true);
+      REQUIRE(!(*(test.digits)).empty());
+      REQUIRE((*(test.digits)).size() == 64);
+      REQUIRE((*(test.digits))[32] == 1);
 
-      REQUIRE(test_ReallyLongInt->size ==64); // Check if true
-      REQUIRE(test_ReallyLongInt->isNeg == true);
-      REQUIRE(!(*(test_ReallyLongInt->digits)).empty());
-      REQUIRE((*(test_ReallyLongInt->digits)).size() == 64);
-      REQUIRE((*(test_ReallyLongInt->digits))[32] == 1);
-
-      delete test_ReallyLongInt;
-      delete &other;
     }
     
     
@@ -97,6 +93,15 @@ TEST_CASE("TESTING ReallyLongInt Class")
       ReallyLongInt testing(2); 
 
       INFO("Testing unequal") //Displayed if fails
+      REQUIRE(!test_ReallyLongInt->equal(testing));
+    }
+
+    SECTION("Equal test3")
+    {
+      test_ReallyLongInt = new ReallyLongInt();
+      ReallyLongInt testing(-2); 
+
+      INFO("Testing sign difference") //Displayed if fails
       REQUIRE(!test_ReallyLongInt->equal(testing));
     }
 
@@ -127,13 +132,68 @@ TEST_CASE("TESTING ReallyLongInt Class")
       REQUIRE(!test_ReallyLongInt->greater(testing));
     }
 
+    SECTION("Greater test3")
+    {
+      test_ReallyLongInt = new ReallyLongInt(-2);
+      ReallyLongInt testing(3); 
+
+      INFO("Testing neg < pos") //Displayed if fails
+      REQUIRE(!test_ReallyLongInt->greater(testing));
+    }
+
+    SECTION("Greater test4")
+    {
+      test_ReallyLongInt = new ReallyLongInt(2);
+      ReallyLongInt testing(-3); 
+
+      INFO("Testing pos > neg") //Displayed if fails
+      REQUIRE(test_ReallyLongInt->greater(testing));
+    }
+
+    SECTION("Greater test5")
+    {
+      test_ReallyLongInt = new ReallyLongInt(4294967296);
+      ReallyLongInt testing(3); 
+
+      INFO("Testing size larger") //Displayed if fails
+      REQUIRE(test_ReallyLongInt->greater(testing));
+    }
+
+    SECTION("Greater test5")
+    {
+      test_ReallyLongInt = new ReallyLongInt(2);
+      ReallyLongInt testing(4294967296); 
+
+      INFO("Testing size smaller") //Displayed if fails
+      REQUIRE(!test_ReallyLongInt->greater(testing));
+    }
+
+     SECTION("Greater test5")
+    {
+      test_ReallyLongInt = new ReallyLongInt(20);
+      ReallyLongInt testing(4294967296); 
+
+      INFO("Testing bits smaller") //Displayed if fails
+      REQUIRE(!test_ReallyLongInt->greater(testing));
+    }
+
+    SECTION("Greater test5")
+    {
+      test_ReallyLongInt = new ReallyLongInt(4294967296);
+      ReallyLongInt testing(30); 
+
+      INFO("Testing bits larger") //Displayed if fails
+      REQUIRE(test_ReallyLongInt->greater(testing));
+    }
+
+
 
     SECTION("toString test")
     {
-      test_ReallyLongInt = new ReallyLongInt(2);
-
+      test_ReallyLongInt = new ReallyLongInt(3);
+      CAPTURE((test_ReallyLongInt->toString()))
       INFO("Testing toString") //Displayed if fails
-      REQUIRE((test_ReallyLongInt->toString()).compare("2"));
+      REQUIRE((test_ReallyLongInt->toString()) == "3");
     }
     
 
@@ -144,14 +204,8 @@ TEST_CASE("TESTING ReallyLongInt Class")
       test_ReallyLongInt = new ReallyLongInt(2);
 
       INFO("Testing toBinaryString") //Displayed if fails
-      REQUIRE((test_ReallyLongInt->toStringBinary()).compare("0000000000000010"));
+      REQUIRE((test_ReallyLongInt->toStringBinary()) == "0100000000000000");
     }
-
-
-
-
-
-
 
 
 }
