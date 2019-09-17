@@ -78,6 +78,8 @@ TEST_CASE("TESTING ReallyLongInt Class")
       delete test_ReallyLongInt;
       delete &other;
     }
+    
+    
 
 
   SECTION("Equal test1")
@@ -125,6 +127,7 @@ TEST_CASE("TESTING ReallyLongInt Class")
       REQUIRE(!test_ReallyLongInt->greater(testing));
     }
 
+
     SECTION("toString test")
     {
       test_ReallyLongInt = new ReallyLongInt(2);
@@ -132,6 +135,9 @@ TEST_CASE("TESTING ReallyLongInt Class")
       INFO("Testing toString") //Displayed if fails
       REQUIRE((test_ReallyLongInt->toString()).compare("2"));
     }
+    
+
+
 
      SECTION("toBinary test")
     {

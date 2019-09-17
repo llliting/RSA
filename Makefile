@@ -3,28 +3,22 @@ FLAGS = -Wall -O0
 DEBUG = --DDEBUG -g
 COVERAGE = --coverage
 
-
 all: ReallyLongInt
 
-ReallyLongInt.o: ReallyLongInt.cpp 
-	$(CC) -c ReallyLongInt.cpp
-
-main.o: main_ref.cpp
-	$(CC) -c main_ref.cpp
-
-main: main.o ReallyLongInt.o
-	$(CC) $(FLAGS) -o main main_ref.o ReallyLongInt.o
-
 catchdebug: ReallyLongInt_TEST.cpp ReallyLongInt.o
-	$(CC) $(FLAGS) $(CATCHINC) -o ReallyLongInt_UNIT ReallyLongInt_TEST.cpp ReallyLongInt.o
+		$(CC) $(FLAGS) $(CATCHINC) -o ReallyLongIntTest ReallyLongInt_TEST.cpp ReallyLongInt.o
+
+coverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
+		$(CC) $(CFLAGE) $(CATCHINC) $(COVERAGE) ReallyLongInt_TEST.cpp ReallyLongInt.cpp
 
 ReallyLongInt: 
-	$(CC) $(FLAGS) -o ReallyLongInt.exe ReallyLongInt.cpp
+		$(CC) $(FLAGS) -o ReallyLongInt.exe ReallyLongInt.cpp
 
 cleantest:
 	rm *.gcov;
 	rm *.gcda;
 	rm *.gcno;
+	rm *.o;
 	rm a.out;
 
 clean:
