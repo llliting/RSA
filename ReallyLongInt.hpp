@@ -15,18 +15,14 @@ using namespace std;
 class ReallyLongInt
 {   
     private:
-        void init(long long num = 0);
-
-    public:
-   //private:
+        void init(long long num);
         vector<bool>* digits;
         unsigned int size;
         bool isNeg;
         bool absGreater(const ReallyLongInt& other) const;
-        long long power2(long long num);
         
 
-    //public:
+    public:
         ReallyLongInt();
         ReallyLongInt(long long num);
         ReallyLongInt(const string& numStr);

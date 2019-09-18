@@ -11,13 +11,8 @@ TEST_CASE("TESTING ReallyLongInt Class")
     {
      
       test_ReallyLongInt = new ReallyLongInt();
-
       INFO("Using default constructor") //Displayed if fails
-
-      REQUIRE(test_ReallyLongInt->size == 16); // Check if true
-      REQUIRE(test_ReallyLongInt->isNeg == false);
-      REQUIRE(!(*(test_ReallyLongInt->digits)).empty());
-      REQUIRE((*(test_ReallyLongInt->digits)).size() == 16);
+      REQUIRE((test_ReallyLongInt->toString()) == "0");
       delete test_ReallyLongInt;
     }
 
@@ -28,15 +23,8 @@ TEST_CASE("TESTING ReallyLongInt Class")
     {
      
       test_ReallyLongInt = new ReallyLongInt(-4294967296);
-
       INFO("Using long long constructor") //Displayed if fails
-
-      REQUIRE(test_ReallyLongInt->size ==64); // Check if true
-      REQUIRE(test_ReallyLongInt->isNeg == true);
-      REQUIRE(!(*(test_ReallyLongInt->digits)).empty());
-      REQUIRE((*(test_ReallyLongInt->digits)).size() == 64);
-      REQUIRE((*(test_ReallyLongInt->digits))[32] == 1);
-
+      REQUIRE((test_ReallyLongInt->toString()) == "-4294967296");
       delete test_ReallyLongInt;
     }
 
@@ -47,14 +35,8 @@ TEST_CASE("TESTING ReallyLongInt Class")
     {
      
       test_ReallyLongInt = new ReallyLongInt("-4294967296");
-
       INFO("Using string constructor") //Displayed if fails
-      REQUIRE(test_ReallyLongInt->size ==64); // Check if true
-      REQUIRE(test_ReallyLongInt->isNeg == true);
-      REQUIRE(!(*(test_ReallyLongInt->digits)).empty());
-      REQUIRE((*(test_ReallyLongInt->digits)).size() == 64);
-      REQUIRE((*(test_ReallyLongInt->digits))[32] == 1);
-
+      REQUIRE((test_ReallyLongInt->toString()) == "-4294967296");
       delete test_ReallyLongInt;
     }
 
@@ -67,11 +49,8 @@ TEST_CASE("TESTING ReallyLongInt Class")
       ReallyLongInt other("-4294967296");
       ReallyLongInt test(other);
       INFO("Using copy constructor") //Displayed if fails
-      REQUIRE(test.size ==64); // Check if true
-      REQUIRE(test.isNeg == true);
-      REQUIRE(!(*(test.digits)).empty());
-      REQUIRE((*(test.digits)).size() == 64);
-      REQUIRE((*(test.digits))[32] == 1);
+      REQUIRE(test.toString() == "-4294967296");
+
 
     }
     

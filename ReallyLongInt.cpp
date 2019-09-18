@@ -115,31 +115,4 @@ string ReallyLongInt::toStringBinary() const{
     return str;
 }
 
-/*
-
-int main(){
-    
-    long long x, y;
- cout << "type in a number : ";
- cin >> x;
-  // x = 10000;
-  ReallyLongInt a;
-    //ReallyLongInt* a = new ReallyLongInt(x);
-    cout << a.toStringBinary() << endl;
-   //cout << "type in a number : ";
-   //cin >> y;
-   //ReallyLongInt b(y);
-   // ReallyLongInt a(c);
-   // cout << a.size << " " << (*(a.digits))[0] << " " << a.isNeg << endl;
-    //ReallyLongInt b(a);
-      //  cout << b.toStringBinary() << endl;
-
-
-  //  cout << a.toString() << endl;
-  //  cout << "equal" << a.equal(b) << endl;
-   //cout << "greater" << " "<<  a.absGreater(b)<< endl;
-    
-    return 0;
-}
-*/
 
