@@ -2,10 +2,9 @@
 #include <vector>
 #include <string.h>
 #include <string>
-//#include <cstring>
 #include "ReallyLongInt.hpp"
 #include <cmath>
-#include <stack>
+
 
 using namespace std;
 void ReallyLongInt::init(long long num){

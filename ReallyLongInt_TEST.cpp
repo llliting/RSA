@@ -152,8 +152,8 @@ TEST_CASE("TESTING ReallyLongInt Class")
 
     SECTION("Greater test5")
     {
-      test_ReallyLongInt = new ReallyLongInt(4294967296);
-      ReallyLongInt testing(3); 
+      test_ReallyLongInt = new ReallyLongInt(31);
+      ReallyLongInt testing(30); 
 
       INFO("Testing size larger") //Displayed if fails
       REQUIRE(test_ReallyLongInt->greater(testing));
@@ -161,8 +161,8 @@ TEST_CASE("TESTING ReallyLongInt Class")
 
     SECTION("Greater test5")
     {
-      test_ReallyLongInt = new ReallyLongInt(2);
-      ReallyLongInt testing(4294967296); 
+      test_ReallyLongInt = new ReallyLongInt(30);
+      ReallyLongInt testing(31); 
 
       INFO("Testing size smaller") //Displayed if fails
       REQUIRE(!test_ReallyLongInt->greater(testing));

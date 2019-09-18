@@ -11,7 +11,7 @@ catchdebug: ReallyLongInt_TEST.cpp ReallyLongInt.o
 coverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
 		$(CC) $(CFLAGE) $(CATCHINC) $(COVERAGE) ReallyLongInt_TEST.cpp ReallyLongInt.cpp
 
-ReallyLongInt: 
+ReallyLongInt: ReallyLongInt.cpp
 		$(CC) $(FLAGS) -o ReallyLongInt.exe ReallyLongInt.cpp
 
 cleantest:
