@@ -87,8 +87,6 @@ bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
         }
         if(((*digits)[0] == 1) && ((*(other.digits))[0] == 0))
             return 1;
-        else if(((*digits)[0] == 0) && ((*(other.digits))[0] == 1))
-            return 0;
         return 0;
     }
     
