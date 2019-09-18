@@ -84,6 +84,15 @@ TEST_CASE("TESTING ReallyLongInt Class")
       REQUIRE(!test_ReallyLongInt->equal(testing));
     }
 
+    SECTION("Equal test4")
+    {
+      test_ReallyLongInt = new ReallyLongInt(1000000);
+      ReallyLongInt testing(2); 
+
+      INFO("Testing sign difference") //Displayed if fails
+      REQUIRE(!test_ReallyLongInt->equal(testing));
+    }
+
       SECTION("Greater test1")
     {
       test_ReallyLongInt = new ReallyLongInt(3);

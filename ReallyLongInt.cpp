@@ -63,6 +63,8 @@ ReallyLongInt::~ReallyLongInt(){
 bool ReallyLongInt::equal(const ReallyLongInt& other) const{
     if(isNeg != other.isNeg)
         return false;
+    else if(size != other.size)
+        return false;
     else{
         for(unsigned int i = 0; i < size; i ++)
             if((*digits)[i] != (*(other.digits))[i])
