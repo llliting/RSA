@@ -29,6 +29,17 @@ TEST_CASE("TESTING ReallyLongInt Class")
     }
 
 
+  SECTION("Long Long Constructor")
+    {
+     
+      test_ReallyLongInt = new ReallyLongInt();
+      INFO("Using long long constructor") //Displayed if fails
+      REQUIRE((test_ReallyLongInt->toStringBinary()) == "0000000000000000");
+      delete test_ReallyLongInt;
+    }
+
+
+
 
 
    SECTION("String Constructor")
@@ -190,7 +201,6 @@ TEST_CASE("TESTING ReallyLongInt Class")
      SECTION("toBinary test")
     {
       test_ReallyLongInt = new ReallyLongInt(2);
-
       INFO("Testing toBinaryString") //Displayed if fails
       REQUIRE((test_ReallyLongInt->toStringBinary()) == "0100000000000000");
     }

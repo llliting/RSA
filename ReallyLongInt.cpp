@@ -17,7 +17,7 @@ void ReallyLongInt::init(long long num){
     }
     //initialize and update size
     size = 16;
-    unsigned int bits = log2(num);
+    unsigned int bits = (unsigned int) log2(num);
     while(bits >= size){
         size = size * 2;
     }
@@ -34,15 +34,15 @@ void ReallyLongInt::init(long long num){
 
 
 ReallyLongInt::ReallyLongInt(){
-    init(0);
+    ReallyLongInt::init(0);
 }
 
 ReallyLongInt::ReallyLongInt(long long num){
-    init(num);
+    ReallyLongInt::init(num);
 }
 
 ReallyLongInt::ReallyLongInt(const string& numStr){
-    init(stoll(numStr));
+    ReallyLongInt::init(stoll(numStr));
 }
 
 
@@ -98,7 +98,7 @@ bool ReallyLongInt::greater(const ReallyLongInt& other) const{
     else if(isNeg == false && other.isNeg == true)
         return true;
     else 
-        return (isNeg == true ? !absGreater(other) : absGreater(other));
+        return (isNeg == true ? (!absGreater(other)) : absGreater(other));
 }
 
 string ReallyLongInt::toString() const{

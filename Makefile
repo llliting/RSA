@@ -22,9 +22,7 @@ cleantest:
 	rm a.out;
 
 clean:
-	#rm *.o;
 	rm ReallyLongInt.exe;
-	#rm main;
 
 
 
