@@ -40,6 +40,7 @@ class ReallyLongInt
         ReallyLongInt absAdd(const ReallyLongInt& other) const;
         ReallyLongInt add(const ReallyLongInt& other) const;
         
+        
 };
 
 #endif 

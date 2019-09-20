@@ -150,5 +150,11 @@ ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
     return ReallyLongInt(sum);
 }
 
+ReallyLongInt ReallyLongInt::add(const ReallyLongInt& other) const{
+    if((isNeg == other.isNeg) && !isNeg)
+        return absAdd(other);
+    else if ((isNeg == other.isNeg) && isNeg)
+        absAdd(other)
+}
 
 
