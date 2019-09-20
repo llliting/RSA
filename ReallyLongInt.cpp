@@ -115,4 +115,29 @@ string ReallyLongInt::toStringBinary() const{
     return str;
 }
 
+void ReallyLongInt::removeLeadingZeros(void){
+    for(int i = size-1; i >= 0; i--)
+        if((*digits)[i] == 1){
+            size = i;
+            break;
+        }
+    vector<bool>* newDigits = new vector<bool> (size, false);
+    for(int i = 0; i < size; i ++)
+        (*newDigits)[i] = (*digits)[i];
+    digits = newDigits;
+}
+
+void ReallyLongInt::swap(ReallyLongInt other){
+    std::swap(this->digits,other.digits);
+	std::swap(this->isNeg,other.isNeg);
+	std::swap(this->digits,other.digits);
+}
+
+
+ReallyLongInt& ReallyLongInt::operator=(const ReallyLongInt& other){
+    swap(other);
+    return *this;
+}
+
+
 

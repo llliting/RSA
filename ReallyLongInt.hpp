@@ -33,6 +33,11 @@ class ReallyLongInt
         bool equal(const ReallyLongInt& other) const;
         bool greater(const ReallyLongInt& other) const;
         ~ReallyLongInt();
+
+        void removeLeadingZeros(void);
+        void swap(ReallyLongInt other);
+        ReallyLongInt& operator=(const ReallyLongInt& other);
+        
 };
 
 #endif 
