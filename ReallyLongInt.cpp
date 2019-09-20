@@ -139,5 +139,16 @@ ReallyLongInt& ReallyLongInt::operator=(const ReallyLongInt& other){
     return *this;
 }
 
+ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
+    //this->removeLeadingZeros();//where should I use remove leading zeros 
+    int carry = 0;
+    string sum = "";
+    for(unsigned int i = 0; i < (size > other.size ? size : other.size); i ++){
+        sum = to_string( carry + ((*digits)[i] ^ (*(other.digits))[i])) + sum;
+        carry = (*digits)[i] & (*(other.digits))[i]);
+    }
+    return ReallyLongInt(sum);
+}
+
 
 

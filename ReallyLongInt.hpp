@@ -37,6 +37,8 @@ class ReallyLongInt
         void removeLeadingZeros(void);
         void swap(ReallyLongInt other);
         ReallyLongInt& operator=(const ReallyLongInt& other);
+        ReallyLongInt absAdd(const ReallyLongInt& other) const;
+        ReallyLongInt add(const ReallyLongInt& other) const;
         
 };
 
