@@ -157,4 +157,10 @@ ReallyLongInt ReallyLongInt::add(const ReallyLongInt& other) const{
         absAdd(other)
 }
 
+void ReallyLongInt::flipSign(){
+    if(toString() == 0)
+        isNeg = false;
+    else 
+        isNeg = (isNeg == true ? false : true );
+}
 
