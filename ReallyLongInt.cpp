@@ -30,25 +30,21 @@ void ReallyLongInt::init(long long num){
         num /= 2;
         index ++;
     }
+    removeLeadingZeros();
 }
 
 
 ReallyLongInt::ReallyLongInt(){
     ReallyLongInt::init(0);
-    removeLeadingZeros();
 
 }
 
 ReallyLongInt::ReallyLongInt(long long num){
     ReallyLongInt::init(num);
-    removeLeadingZeros();
-
 }
 
 ReallyLongInt::ReallyLongInt(const string& numStr){
     ReallyLongInt::init(stoll(numStr));
-    removeLeadingZeros();
-
 }
 
 
