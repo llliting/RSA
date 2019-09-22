@@ -121,8 +121,6 @@ string ReallyLongInt::toStringBinary() const{
 
 
 
-
-
 void ReallyLongInt::removeLeadingZeros(void){
     for(int i = size-1; i >= 0; i--){
         if((*digits)[i] == 1){
@@ -137,10 +135,11 @@ void ReallyLongInt::removeLeadingZeros(void){
     for(unsigned int i = 0; i < size; i ++)
         (*newDigits)[i] = (*digits)[i];
 
-    cout << " digits " << endl;
+    /*cout << " digits " << endl;
     for (unsigned int i = 0; i < size; i++)
 		cout << (*newDigits)[i];
     cout << "\n "<< endl;
+    */
     this->digits = newDigits;
 }
 
@@ -169,16 +168,20 @@ ReallyLongInt ReallyLongInt::operator-() const{
 }
 
 ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
-    //this->removeLeadingZeros();//where should I use remove leading zeros 
-    //this->removeLeadingZeros();
-    //other.removeLeadingZeros();
     int carry = 0;
-    string sum = "";
-    for(unsigned int i = 0; i < (size > other.size ? size : other.size); i ++){
-        sum = to_string( carry + ((*digits)[i] ^ (*(other.digits))[i])) + sum;
-        carry = (*digits)[i] & (*(other.digits))[i];
+    ReallyLongInt ans;
+    ans.size = (size > other.size ? size : other.size) + 1;
+    ans.digits = new vector<bool> (ans.size, false);
+    ans.isNeg = false;
+    unsigned int i = 0;
+    for(; i < ans.size ; i ++){
+        (*ans.digits)[i] = carry ^ (*digits)[i] ^ (*(other.digits))[i];
+        carry = ((*digits)[i] & (*(other.digits))[i]) || (carry & (*(other.digits))[i]) || (((*digits)[i] & carry));
     }
-    return ReallyLongInt(sum);
+    if(carry == 1) 
+        (*ans.digits)[i] = 1;
+    ans.removeLeadingZeros();
+    return ans;
 }
 
 ReallyLongInt ReallyLongInt::add(const ReallyLongInt& other) const{
@@ -186,11 +189,12 @@ ReallyLongInt ReallyLongInt::add(const ReallyLongInt& other) const{
         return absAdd(other);
     else if ((isNeg == other.isNeg) && isNeg){
         ReallyLongInt res = absAdd(other);
-        res.flipSign();
+        res.isNeg = true;
         return res;
     }
     return NULL;
 }
+/////problem :::: 0 + negative number
 
 
 int main(){
@@ -198,13 +202,13 @@ int main(){
     long long b;
     printf("a: \n");
     cin >> a;
-    //printf("b : \n");
-    //cin >> b;
+    printf("b : \n");
+    cin >> b;
     ReallyLongInt x(a);
-    //ReallyLongInt y(b);
-    cout << x.toStringBinary() << endl;
-    //ReallyLongInt ans = x.absAdd(y);
-    //cout << ans.toString() << endl;
+    ReallyLongInt y(b);
+    //cout << x.toStringBinary() << endl;
+    ReallyLongInt ans = x.add(y);
+    cout << ans.toString() << endl;
 
 }
 
