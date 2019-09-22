@@ -139,6 +139,12 @@ ReallyLongInt& ReallyLongInt::operator=(const ReallyLongInt& other){
     return *this;
 }
 
+ReallyLongInt ReallyLongInt::operator-() const{
+    this->flipSign();
+    return *this;
+}
+
+
 ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
     //this->removeLeadingZeros();//where should I use remove leading zeros 
     int carry = 0;
