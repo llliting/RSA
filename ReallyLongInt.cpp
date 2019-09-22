@@ -130,16 +130,9 @@ void ReallyLongInt::removeLeadingZeros(void){
         else if((i == 0) && ((*digits)[0] == 0))
             this->size = 1;
     }
-
     vector<bool>* newDigits = new vector<bool> (size, false);
     for(unsigned int i = 0; i < size; i ++)
         (*newDigits)[i] = (*digits)[i];
-
-    /*cout << " digits " << endl;
-    for (unsigned int i = 0; i < size; i++)
-		cout << (*newDigits)[i];
-    cout << "\n "<< endl;
-    */
     this->digits = newDigits;
 }
 
@@ -149,22 +142,16 @@ void ReallyLongInt::swap(ReallyLongInt other){
 	std::swap(this->digits,other.digits);
 }
 
-void ReallyLongInt::flipSign(){
-    if(toString() == "0")
-        isNeg = false;
-    else 
-        isNeg = (isNeg == true ? false : true);
-}
-
 ReallyLongInt& ReallyLongInt::operator=(const ReallyLongInt& other){
     swap(other);
     return *this;
 }
 
-ReallyLongInt ReallyLongInt::operator-() const{
-    ReallyLongInt flip = *this;
-    flip.flipSign();
-    return flip;
+void ReallyLongInt::flipSign(){
+    if(toString() == "0")
+        isNeg = false;
+    else 
+        isNeg = (isNeg == true ? false : true);
 }
 
 ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
@@ -195,6 +182,20 @@ ReallyLongInt ReallyLongInt::add(const ReallyLongInt& other) const{
     return NULL;
 }
 /////problem :::: 0 + negative number
+
+
+
+ReallyLongInt ReallyLongInt::operator-() const{
+    ReallyLongInt flip = *this;
+    flip.flipSign();
+    return flip;
+}
+
+ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
+    ReallyLongInt larger = absGreater(other) ? *this : other;
+    ReallyLongInt smaller = absGreater(other) ? other : *this; 
+    
+}
 
 
 int main(){
