@@ -20,6 +20,8 @@ class ReallyLongInt
         unsigned int size;
         bool isNeg;
         bool absGreater(const ReallyLongInt& other) const;
+        void swap(ReallyLongInt other);
+
         void flipSign();
         
 
@@ -36,13 +38,13 @@ class ReallyLongInt
         ~ReallyLongInt();
 
         void removeLeadingZeros(void);
-        void swap(ReallyLongInt other);
         ReallyLongInt& operator=(const ReallyLongInt& other);
         ReallyLongInt absAdd(const ReallyLongInt& other) const;
 
         ReallyLongInt add(const ReallyLongInt& other) const;
         ReallyLongInt absSub(const ReallyLongInt& other) const;
         ReallyLongInt sub(const ReallyLongInt& other) const;
+        ReallyLongInt operator-() const;
         
         
 };

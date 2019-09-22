@@ -160,7 +160,7 @@ ReallyLongInt ReallyLongInt::add(const ReallyLongInt& other) const{
     if((isNeg == other.isNeg) && !isNeg)
         return absAdd(other);
     else if ((isNeg == other.isNeg) && isNeg)
-        absAdd(other)
+        return absAdd(other).isNeg = true;
 }
 
 void ReallyLongInt::flipSign(){
