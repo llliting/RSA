@@ -35,14 +35,20 @@ void ReallyLongInt::init(long long num){
 
 ReallyLongInt::ReallyLongInt(){
     ReallyLongInt::init(0);
+    removeLeadingZeros();
+
 }
 
 ReallyLongInt::ReallyLongInt(long long num){
     ReallyLongInt::init(num);
+    removeLeadingZeros();
+
 }
 
 ReallyLongInt::ReallyLongInt(const string& numStr){
     ReallyLongInt::init(stoll(numStr));
+    removeLeadingZeros();
+
 }
 
 
@@ -115,16 +121,31 @@ string ReallyLongInt::toStringBinary() const{
     return str;
 }
 
+
+
+
+
+
+
 void ReallyLongInt::removeLeadingZeros(void){
-    for(int i = size-1; i >= 0; i--)
+    for(int i = size-1; i >= 0; i--){
         if((*digits)[i] == 1){
-            size = i;
+            this->size = i+1;
             break;
         }
+        else if((i == 0) && ((*digits)[0] == 0))
+            this->size = 1;
+    }
+
     vector<bool>* newDigits = new vector<bool> (size, false);
-    for(int i = 0; i < size; i ++)
+    for(unsigned int i = 0; i < size; i ++)
         (*newDigits)[i] = (*digits)[i];
-    digits = newDigits;
+
+    cout << " digits " << endl;
+    for (unsigned int i = 0; i < size; i++)
+		cout << (*newDigits)[i];
+    cout << "\n "<< endl;
+    this->digits = newDigits;
 }
 
 void ReallyLongInt::swap(ReallyLongInt other){
@@ -133,6 +154,12 @@ void ReallyLongInt::swap(ReallyLongInt other){
 	std::swap(this->digits,other.digits);
 }
 
+void ReallyLongInt::flipSign(){
+    if(toString() == "0")
+        isNeg = false;
+    else 
+        isNeg = (isNeg == true ? false : true);
+}
 
 ReallyLongInt& ReallyLongInt::operator=(const ReallyLongInt& other){
     swap(other);
@@ -140,18 +167,20 @@ ReallyLongInt& ReallyLongInt::operator=(const ReallyLongInt& other){
 }
 
 ReallyLongInt ReallyLongInt::operator-() const{
-    this->flipSign();
-    return *this;
+    ReallyLongInt flip = *this;
+    flip.flipSign();
+    return flip;
 }
-
 
 ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
     //this->removeLeadingZeros();//where should I use remove leading zeros 
+    //this->removeLeadingZeros();
+    //other.removeLeadingZeros();
     int carry = 0;
     string sum = "";
     for(unsigned int i = 0; i < (size > other.size ? size : other.size); i ++){
         sum = to_string( carry + ((*digits)[i] ^ (*(other.digits))[i])) + sum;
-        carry = (*digits)[i] & (*(other.digits))[i]);
+        carry = (*digits)[i] & (*(other.digits))[i];
     }
     return ReallyLongInt(sum);
 }
@@ -159,14 +188,27 @@ ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
 ReallyLongInt ReallyLongInt::add(const ReallyLongInt& other) const{
     if((isNeg == other.isNeg) && !isNeg)
         return absAdd(other);
-    else if ((isNeg == other.isNeg) && isNeg)
-        return absAdd(other).isNeg = true;
+    else if ((isNeg == other.isNeg) && isNeg){
+        ReallyLongInt res = absAdd(other);
+        res.flipSign();
+        return res;
+    }
+    return NULL;
 }
 
-void ReallyLongInt::flipSign(){
-    if(toString() == 0)
-        isNeg = false;
-    else 
-        isNeg = (isNeg == true ? false : true );
+
+int main(){
+    long long a;
+    long long b;
+    printf("a: \n");
+    cin >> a;
+    //printf("b : \n");
+    //cin >> b;
+    ReallyLongInt x(a);
+    //ReallyLongInt y(b);
+    cout << x.toStringBinary() << endl;
+    //ReallyLongInt ans = x.absAdd(y);
+    //cout << ans.toString() << endl;
+
 }
 
