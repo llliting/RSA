@@ -193,7 +193,7 @@ ReallyLongInt ReallyLongInt::operator-() const{
 
 ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
     ReallyLongInt ans;
-    if(equal(other))
+    if(equal(other))// ans equ??
         return ans;
     ans.isNeg = absGreater(other) ? false : true;
     ReallyLongInt larger, smaller;
