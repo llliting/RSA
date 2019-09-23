@@ -157,6 +157,12 @@ void ReallyLongInt::flipSign(){
         isNeg = (isNeg == true ? false : true);
 }
 
+ReallyLongInt ReallyLongInt::operator-() const{
+    ReallyLongInt flip = *this;
+    flip.flipSign();
+    return flip;
+}
+
 ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
     int carry = 0;
     ReallyLongInt ans;
@@ -180,14 +186,6 @@ ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
         (*ans.digits)[i] = 1;
     ans.removeLeadingZeros();
     return ans;
-}
-
-
-
-ReallyLongInt ReallyLongInt::operator-() const{
-    ReallyLongInt flip = *this;
-    flip.flipSign();
-    return flip;
 }
 
 ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
@@ -223,22 +221,27 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
             borrow = 1;
         }
      }
-     ans.removeLeadingZeros();
+    ans.removeLeadingZeros();
     return ans;
 }
 
 ReallyLongInt ReallyLongInt::add(const ReallyLongInt& other) const{
-    if((isNeg == other.isNeg) && !isNeg)
-        return absAdd(other);
-    else if ((isNeg == other.isNeg) && isNeg){
-        ReallyLongInt res = absAdd(other);
-        res.isNeg = true;
-        return res;
-    }
-    return NULL;
-}
-/////problem :::: 0 + negative number
+    if(isNeg == other.isNeg) 
+        return isNeg ? -absAdd(other) : absAdd(other);
+    else if(isNeg)
+        return other.absSub(*this);
+    else
+        return absSub(other);
 
+}
+
+ReallyLongInt ReallyLongInt::sub(const ReallyLongInt& other) const{
+    if(isNeg == other.isNeg)
+        return isNeg ? -absSub(other) : absSub(other);
+    else 
+        return isNeg ? -absAdd(other) : absAdd(other);
+
+}
 
 
 
@@ -252,7 +255,7 @@ int main(){
     ReallyLongInt x(a);
     ReallyLongInt y(b);
     //cout << x.toStringBinary() << endl;
-    ReallyLongInt ans = x.absSub(y);
+    ReallyLongInt ans = x.sub(y);
     //ReallyLongInt y = -x;
     cout << "ans: " << ans.toString() << endl;
 
