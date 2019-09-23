@@ -23,6 +23,8 @@ class ReallyLongInt
         void swap(ReallyLongInt other);
 
         void flipSign();
+        void absDiv (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const;
+
         
 
     public:
@@ -45,6 +47,10 @@ class ReallyLongInt
         ReallyLongInt absSub(const ReallyLongInt& other) const;
         ReallyLongInt sub(const ReallyLongInt& other) const;
         ReallyLongInt operator-() const;
+        void Div (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const;
+        ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y);
+        ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y);
+
         
         
 };

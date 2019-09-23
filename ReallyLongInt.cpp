@@ -130,7 +130,7 @@ void ReallyLongInt::removeLeadingZeros(void){
         else if((i == 0) && ((*digits)[0] == 0))
             this->size = 1;
     }
-    vector<bool>* newDigits = new vector<bool> (size, false);
+    vector<bool>* newDigits = new vector<bool> (size, false); ///////？？？？？
     for(unsigned int i = 0; i < size; i ++)
         (*newDigits)[i] = (*digits)[i];
     this->digits = newDigits;
@@ -158,7 +158,7 @@ ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
     int carry = 0;
     ReallyLongInt ans;
     ans.size = (size > other.size ? size : other.size) + 1;
-    ans.digits = new vector<bool> (ans.size, false);
+    ans.digits = new vector<bool> (ans.size, false);  ////////？？？？？？？
     ans.isNeg = false;
     unsigned int i = 0;
     for(; i < ans.size ; i ++){
