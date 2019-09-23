@@ -192,7 +192,7 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
     ReallyLongInt ans;
     vector<bool>* larger;
     vector<bool>* smaller;
-    if(equal(other) || equal(-other))// abs equ??
+    if(equal(other) || equal(-other))
       return ReallyLongInt(0);
     ans.isNeg = absGreater(other) ? false : true;
     if(ans.isNeg){
@@ -228,11 +228,8 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
 ReallyLongInt ReallyLongInt::add(const ReallyLongInt& other) const{
     if(isNeg == other.isNeg) 
         return isNeg ? -absAdd(other) : absAdd(other);
-    else if(isNeg)
-        return other.absSub(*this);
-    else
-        return absSub(other);
-
+    else 
+        return isNeg ? other.absSub(*this) : absSub(other);
 }
 
 ReallyLongInt ReallyLongInt::sub(const ReallyLongInt& other) const{
@@ -240,21 +237,18 @@ ReallyLongInt ReallyLongInt::sub(const ReallyLongInt& other) const{
         return isNeg ? -absSub(other) : absSub(other);
     else 
         return isNeg ? -absAdd(other) : absAdd(other);
-
 }
 
 ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
     vector<bool>* ans = new vector<bool> (size + other.size, false);
-    int carry = 0;
-    unsigned int mul, i = 0;
-    for(; i < size; i ++){
-        unsigned int j = 0;
-        for(; j < other.size; j ++){
+    bool mul;
+    for(unsigned int i = 0; i < size; i ++){
+        for(unsigned int j = 0; j < other.size; j ++){
             mul = (*digits)[i] & (*other.digits)[j];
-            (*ans)[i + j] = ( mul ^ carry);
-            carry = (mul & carry) ? 1 : 0;
+            if(mul && (*ans)[i+j])
+                (*ans)[i+j+1] = 1;
+            (*ans)[i + j] = ( mul ^ (*ans)[i + j]);
         }
-        (*ans)[i + j] = carry;
     }
     ReallyLongInt answer;
     answer.size = size + other.size;
@@ -262,6 +256,31 @@ ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
     answer.digits = ans;
     answer.removeLeadingZeros();
     return answer;
+}
+
+ReallyLongInt ReallyLongInt::mult(const ReallyLongInt& other)const{
+    if(isNeg == other.isNeg)
+        return absMult(other);
+    else 
+        return -absMult(other);
+}
+
+void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
+    ReallyLongInt helper(2);
+    ReallyLongInt q, r;
+    vector<bool>* q_digits = new vector<bool> ();
+    vector<bool>* r_digits = new vector<bool> (other.size+1, false);
+    delete r.digits;
+    r.digits = r_digits;
+    for(int i = size-1; i >= 0; i--){
+        r *= helper;
+        r 
+    }
+
+}
+
+ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.mult(y);
 }
 
 
@@ -276,7 +295,7 @@ int main(){
     ReallyLongInt x(a);
     ReallyLongInt y(b);
     //cout << x.toStringBinary() << endl;
-    ReallyLongInt ans = x.absSub(y);
+    ReallyLongInt ans = x.mult(y);
     //ReallyLongInt y = -x;
     cout << "ans: " << ans.toString() << endl;
 

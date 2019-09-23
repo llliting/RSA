@@ -14,7 +14,8 @@ using namespace std;
 
 class ReallyLongInt
 {   
-    private:
+    //private:
+    public:
         void init(long long num);
         vector<bool>* digits;
         unsigned int size;
@@ -27,7 +28,7 @@ class ReallyLongInt
 
         
 
-    public:
+   // public:
         ReallyLongInt();
         ReallyLongInt(long long num);
         ReallyLongInt(const string& numStr);
@@ -41,18 +42,18 @@ class ReallyLongInt
 
         void removeLeadingZeros(void);
         ReallyLongInt absAdd(const ReallyLongInt& other) const;
-
         ReallyLongInt add(const ReallyLongInt& other) const;
         ReallyLongInt absSub(const ReallyLongInt& other) const;
         ReallyLongInt sub(const ReallyLongInt& other) const;
-        void Div (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const;
+        ReallyLongInt mult(const ReallyLongInt& other)const;
+        void div (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const;
         ReallyLongInt operator-() const;
         ReallyLongInt& operator=(const ReallyLongInt& other);
 
 
 
 };
-
+ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y);
 ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y);
 ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y);
 
