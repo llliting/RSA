@@ -197,7 +197,9 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
         return ans;
     ans.isNeg = absGreater(other) ? false : true;
     ReallyLongInt larger, smaller;
-    if(ans.isNeg == true){
+    if(ans.isNeg){
+        //swap(larger, other);
+        //swap(smaller, *this);
         larger = other;
         smaller = *this;
     }
@@ -205,6 +207,8 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
         larger = *this;
         smaller = other;
     }
+    //cout << larger.toStringBinary() << "larger \n";
+    //cout << smaller.toStringBinary() << "smaller \n";
     ans.size = larger.size;
     ans.digits = new vector<bool> (ans.size, false);
     
@@ -218,7 +222,6 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
         else if(((*larger.digits)[i] ^ (*smaller.digits)[i]) == 0){
             (*ans.digits)[i] = (borrow == 0 ? 0 : 1);
             cout << "2 " << borrow << endl;
-
         }
         else{
             (*ans.digits)[i] = (borrow == 0 ? 1 : 0);
@@ -226,7 +229,7 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
             cout << "3 " << borrow << endl;
 
         }
-        cout << (*ans.digits)[i];
+        //cout << (*ans.digits)[i];
      }
      ans.removeLeadingZeros();
     return ans;
@@ -236,15 +239,16 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
 int main(){
     long long a;
     long long b;
-    printf("a: \n");
+    printf("a: ");
     cin >> a;
-    printf("b : \n");
+    printf("b : ");
     cin >> b;
     ReallyLongInt x(a);
     ReallyLongInt y(b);
     //cout << x.toStringBinary() << endl;
     ReallyLongInt ans = x.absSub(y);
-    cout << ans.toStringBinary() << endl;
+    //ReallyLongInt y = -x;
+    cout << ans.toString() << endl;
 
 }
 
