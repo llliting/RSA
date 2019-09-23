@@ -21,9 +21,9 @@ class ReallyLongInt
         bool isNeg;
         bool absGreater(const ReallyLongInt& other) const;
         void swap(ReallyLongInt other);
-
         void flipSign();
         void absDiv (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const;
+        ReallyLongInt absMult(const ReallyLongInt& other) const;
 
         
 

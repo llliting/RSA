@@ -243,6 +243,27 @@ ReallyLongInt ReallyLongInt::sub(const ReallyLongInt& other) const{
 
 }
 
+ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
+    vector<bool>* ans = new vector<bool> (size + other.size, false);
+    int carry = 0;
+    unsigned int mul, i = 0;
+    for(; i < size; i ++){
+        unsigned int j = 0;
+        for(; j < other.size; j ++){
+            mul = (*digits)[i] & (*other.digits)[j];
+            (*ans)[i + j] = ( mul ^ carry);
+            carry = (mul & carry) ? 1 : 0;
+        }
+        (*ans)[i + j] = carry;
+    }
+    ReallyLongInt answer;
+    answer.size = size + other.size;
+    delete answer.digits;
+    answer.digits = ans;
+    answer.removeLeadingZeros();
+    return answer;
+}
+
 
 
 int main(){
@@ -255,7 +276,7 @@ int main(){
     ReallyLongInt x(a);
     ReallyLongInt y(b);
     //cout << x.toStringBinary() << endl;
-    ReallyLongInt ans = x.sub(y);
+    ReallyLongInt ans = x.absSub(y);
     //ReallyLongInt y = -x;
     cout << "ans: " << ans.toString() << endl;
 
