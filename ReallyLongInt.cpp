@@ -129,17 +129,20 @@ void ReallyLongInt::removeLeadingZeros(void){
         }
         else if((i == 0) && ((*digits)[0] == 0))
             this->size = 1;
+        else if((i == 0) && ((*digits)[0] == 1))
+            return;
     }
-    vector<bool>* newDigits = new vector<bool> (size, false); ///////？？？？？
+    vector<bool>* newDigits = new vector<bool> (size, false); 
     for(unsigned int i = 0; i < size; i ++)
         (*newDigits)[i] = (*digits)[i];
+    delete digits;
     this->digits = newDigits;
 }
 
 void ReallyLongInt::swap(ReallyLongInt other){
     std::swap(this->digits,other.digits);
 	std::swap(this->isNeg,other.isNeg);
-	std::swap(this->digits,other.digits);
+	std::swap(this->size,other.size);
 }
 
 ReallyLongInt& ReallyLongInt::operator=(const ReallyLongInt& other){
@@ -158,16 +161,69 @@ ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
     int carry = 0;
     ReallyLongInt ans;
     ans.size = (size > other.size ? size : other.size) + 1;
-    ans.digits = new vector<bool> (ans.size, false);  ////////？？？？？？？
+    delete ans.digits;
+    ans.digits = new vector<bool> (ans.size, false); 
     ans.isNeg = false;
     unsigned int i = 0;
     for(; i < ans.size ; i ++){
         (*ans.digits)[i] = carry ^ (*digits)[i] ^ (*(other.digits))[i];
-        carry = ((*digits)[i] & (*(other.digits))[i]) || (carry & (*(other.digits))[i]) || (((*digits)[i] & carry));
+        if(((*digits)[i] & (*other.digits)[i]) == 1)
+            carry = 1;
+        else if((carry & (*(other.digits))[i]) == 1)
+            carry = 1;
+        else if (((*digits)[i] & carry ) == 1)
+            carry = 1;
+        else
+            carry = 0;
     }
     if(carry == 1) 
         (*ans.digits)[i] = 1;
     ans.removeLeadingZeros();
+    return ans;
+}
+
+
+
+ReallyLongInt ReallyLongInt::operator-() const{
+    ReallyLongInt flip = *this;
+    flip.flipSign();
+    return flip;
+}
+
+ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
+    ReallyLongInt ans;
+    vector<bool>* larger;
+    vector<bool>* smaller;
+    if(equal(other) || equal(-other))// abs equ??
+      return ReallyLongInt(0);
+    ans.isNeg = absGreater(other) ? false : true;
+    if(ans.isNeg){
+        larger = other.digits;
+        smaller = this->digits;
+        ans.size = other.size;
+    }
+    else{
+        larger = this->digits;
+        smaller = other.digits;
+        ans.size = this->size;
+    }
+    delete ans.digits;
+    ans.digits = new vector<bool> (ans.size, false);
+    int borrow = 0;
+    for(unsigned int i = 0; i < ans.size; i ++){
+        if((*larger)[i] == 1 && (*smaller)[i] == 0){
+            (*ans.digits)[i] = 1 - borrow;
+            borrow = 0;
+        }
+        else if(((*larger)[i] == (*smaller)[i])){
+            (*ans.digits)[i] = (borrow == 0 ? 0 : 1);
+        }
+        else{
+            (*ans.digits)[i] = (borrow == 0 ? 1 : 0);
+            borrow = 1;
+        }
+     }
+     ans.removeLeadingZeros();
     return ans;
 }
 
@@ -185,56 +241,6 @@ ReallyLongInt ReallyLongInt::add(const ReallyLongInt& other) const{
 
 
 
-ReallyLongInt ReallyLongInt::operator-() const{
-    ReallyLongInt flip = *this;
-    flip.flipSign();
-    return flip;
-}
-
-ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
-    ReallyLongInt ans;
-    if(equal(other))// ans equ??
-        return ans;
-    ans.isNeg = absGreater(other) ? false : true;
-    ReallyLongInt larger, smaller;
-    if(ans.isNeg){
-        //swap(larger, other);
-        //swap(smaller, *this);
-        larger = other;
-        smaller = *this;
-    }
-    else{
-        larger = *this;
-        smaller = other;
-    }
-    //cout << larger.toStringBinary() << "larger \n";
-    //cout << smaller.toStringBinary() << "smaller \n";
-    ans.size = larger.size;
-    ans.digits = new vector<bool> (ans.size, false);
-    
-    int borrow = 0;
-    for(unsigned int i = 0; i < ans.size; i ++){
-        if((*larger.digits)[i] == 1 && (*smaller.digits)[i] == 0){
-            (*ans.digits)[i] = 1 - borrow;
-            borrow = 0;
-            cout << "1 " << borrow <<  endl;
-        }
-        else if(((*larger.digits)[i] ^ (*smaller.digits)[i]) == 0){
-            (*ans.digits)[i] = (borrow == 0 ? 0 : 1);
-            cout << "2 " << borrow << endl;
-        }
-        else{
-            (*ans.digits)[i] = (borrow == 0 ? 1 : 0);
-            borrow = 1;
-            cout << "3 " << borrow << endl;
-
-        }
-        //cout << (*ans.digits)[i];
-     }
-     ans.removeLeadingZeros();
-    return ans;
-}
-
 
 int main(){
     long long a;
@@ -248,7 +254,7 @@ int main(){
     //cout << x.toStringBinary() << endl;
     ReallyLongInt ans = x.absSub(y);
     //ReallyLongInt y = -x;
-    cout << ans.toString() << endl;
+    cout << "ans: " << ans.toString() << endl;
 
 }
 

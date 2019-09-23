@@ -40,19 +40,21 @@ class ReallyLongInt
         ~ReallyLongInt();
 
         void removeLeadingZeros(void);
-        ReallyLongInt& operator=(const ReallyLongInt& other);
         ReallyLongInt absAdd(const ReallyLongInt& other) const;
 
         ReallyLongInt add(const ReallyLongInt& other) const;
         ReallyLongInt absSub(const ReallyLongInt& other) const;
         ReallyLongInt sub(const ReallyLongInt& other) const;
-        ReallyLongInt operator-() const;
         void Div (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const;
-        ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y);
-        ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y);
+        ReallyLongInt operator-() const;
+        ReallyLongInt& operator=(const ReallyLongInt& other);
 
-        
-        
+
+
 };
+
+ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y);
+ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y);
+
 
 #endif 
