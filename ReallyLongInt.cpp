@@ -267,14 +267,22 @@ ReallyLongInt ReallyLongInt::mult(const ReallyLongInt& other)const{
 
 void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
     ReallyLongInt helper(2);
-    ReallyLongInt q, r;
+    ReallyLongInt one(1);
+    ReallyLongInt zero;
+    ReallyLongInt q, r, d;
     vector<bool>* q_digits = new vector<bool> ();
     vector<bool>* r_digits = new vector<bool> (other.size+1, false);
     delete r.digits;
     r.digits = r_digits;
     for(int i = size-1; i >= 0; i--){
-        r *= helper;
-        r 
+        r = helper * r;
+        r = r + ((*digits)[i] == true ? one : zero);
+        d = zero;
+        while(r.greater(other)){
+            r = r - other;
+            d = d + 1;
+        }
+        q = q + d*(3);
     }
 
 }
