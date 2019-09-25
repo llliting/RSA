@@ -245,8 +245,15 @@ ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
     for(unsigned int i = 0; i < size; i ++){
         for(unsigned int j = 0; j < other.size; j ++){
             mul = (*digits)[i] & (*other.digits)[j];
-            if(mul && (*ans)[i+j])
-                (*ans)[i+j+1] = 1;
+            if(mul && (*ans)[i+j]){
+
+                if( (*ans)[i+j+1] == 1){
+                    (*ans)[i+j+1] = 0;
+                    (*ans)[i+j+2] = 1;
+                }
+                else
+                    (*ans)[i+j+1] = 1;
+            }
             (*ans)[i + j] = ( mul ^ (*ans)[i + j]);
         }
     }
@@ -255,7 +262,7 @@ ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
     delete answer.digits;
     answer.digits = ans;
     answer.removeLeadingZeros();
-    return answer;
+    return answer; 
 }
 
 ReallyLongInt ReallyLongInt::mult(const ReallyLongInt& other)const{
@@ -266,7 +273,7 @@ ReallyLongInt ReallyLongInt::mult(const ReallyLongInt& other)const{
 }
 
 void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
-    ReallyLongInt r;
+   /* ReallyLongInt r;
     ReallyLongInt zero;
     ReallyLongInt one(1);
     ReallyLongInt two(2);
@@ -288,6 +295,7 @@ void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient,
     }
     quotient = q;
     remainder = r;
+    */
 }
 
 ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y){
@@ -304,6 +312,7 @@ ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y){
 
 
 int main(){
+    /*
     long long a;
     long long b;
     printf("a: ");
@@ -313,10 +322,12 @@ int main(){
     ReallyLongInt x(a);
     ReallyLongInt y(b);
     //cout << x.toStringBinary() << endl;
-    ReallyLongInt ans = x.add(y);
+    ReallyLongInt ans = x.absMult(y);
     //ReallyLongInt y = -x;
     cout << "ans: " << ans.toString() << endl;
+    */
     ReallyLongInt c(3);
-    cout << (2 + c).toString() << endl;
+     c = -c ;
+    cout <<  c.toString() << endl;
 }
 
