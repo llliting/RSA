@@ -266,31 +266,41 @@ ReallyLongInt ReallyLongInt::mult(const ReallyLongInt& other)const{
 }
 
 void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
-    ReallyLongInt helper(2);
-    ReallyLongInt one(1);
+    ReallyLongInt r;
     ReallyLongInt zero;
-    ReallyLongInt q, r, d;
-    vector<bool>* q_digits = new vector<bool> ();
-    vector<bool>* r_digits = new vector<bool> (other.size+1, false);
-    delete r.digits;
-    r.digits = r_digits;
-    for(int i = size-1; i >= 0; i--){
-        r = helper * r;
-        r = r + ((*digits)[i] == true ? one : zero);
+    ReallyLongInt one(1);
+    ReallyLongInt two(2);
+    ReallyLongInt q;
+    ReallyLongInt d;
+    unsigned int helper = 1;
+    for(int i = size-1; i >= 0; i --){
+        r = r * 2;
+        if((*digits)[i] == 1) 
+            r = r + one;
         d = zero;
-        while(r.greater(other)){
+        while(r.greater(other) || r.equal(other)){
             r = r - other;
-            d = d + 1;
+            d = d + one;
         }
-        q = q + d*(3);
+    helper = pow(2,i);
+    d = d * helper;
+    q = q + d;
     }
-
+    quotient = q;
+    remainder = r;
 }
 
 ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y){
     return x.mult(y);
 }
 
+ReallyLongInt operator+(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.add(y);
+}
+
+ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.sub(y);
+}
 
 
 int main(){
@@ -303,9 +313,10 @@ int main(){
     ReallyLongInt x(a);
     ReallyLongInt y(b);
     //cout << x.toStringBinary() << endl;
-    ReallyLongInt ans = x.mult(y);
+    ReallyLongInt ans = x.add(y);
     //ReallyLongInt y = -x;
     cout << "ans: " << ans.toString() << endl;
-
+    ReallyLongInt c(3);
+    cout << (2 + c).toString() << endl;
 }
 
