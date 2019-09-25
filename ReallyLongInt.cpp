@@ -274,7 +274,6 @@ ReallyLongInt ReallyLongInt::mult(const ReallyLongInt& other)const{
 }
 
 void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
-
     ReallyLongInt r;    
     ReallyLongInt d;
     ReallyLongInt q;
@@ -286,7 +285,7 @@ void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient,
         d = 0;
         while(r.greater(other) || r.equal(other)){
             r = r - other;
-            d = d + one;
+            d = d + 1;
         }
     helper = pow(2,i);
     d = d * helper;
@@ -294,7 +293,6 @@ void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient,
     }
     quotient = q;
     remainder = r;
-
 }
 
 ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y){
@@ -309,9 +307,9 @@ ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y){
     return x.sub(y);
 }
 
-
+/*
 int main(){
-    /*
+    
     long long a;
     long long b;
     printf("a: ");
@@ -321,14 +319,21 @@ int main(){
     ReallyLongInt x(a);
     ReallyLongInt y(b);
     //cout << x.toStringBinary() << endl;
-    ReallyLongInt ans = x.absMult(y);
+    //ReallyLongInt ans = x.absMult(y);
     //ReallyLongInt y = -x;
-    cout << "ans: " << ans.toString() << endl;
-    */
+    //cout << "ans: " << ans.toString() << endl;
+    
    
-    ReallyLongInt c(4);
+    //ReallyLongInt c(4);
+    //ReallyLongInt d(2);
+    ReallyLongInt q;
+    ReallyLongInt r;
+    x.absDiv (y, q, r);
+
    // ReallyLongInt d;
      //c = c + d ;
-    cout <<  c.toStringBinary() << endl;
-}
+    cout << "q: " << q.toString() << endl;
+    cout << "r: " << r.toString() << endl;
 
+}
+*/

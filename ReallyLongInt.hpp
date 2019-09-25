@@ -56,6 +56,10 @@ class ReallyLongInt
 ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y);
 ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y);
 ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y);
+ReallyLongInt operator+(const ReallyLongInt& x, const ReallyLongInt& y);
+ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y);
+
+
 
 
 #endif 

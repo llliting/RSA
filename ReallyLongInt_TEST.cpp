@@ -22,7 +22,7 @@ TEST_CASE("TESTING ReallyLongInt Class")
 
       test_ReallyLongInt = new ReallyLongInt();
       INFO("Using long long constructor") //Displayed if fails
-      REQUIRE((test_ReallyLongInt->toStringBinary()) == "0000000000000000");
+      REQUIRE((test_ReallyLongInt->toStringBinary()) == "0");
       delete test_ReallyLongInt;
 
       ReallyLongInt other("-4294967296");
@@ -122,15 +122,56 @@ TEST_CASE("TESTING ReallyLongInt Class")
       INFO("Testing toString") //Displayed if fails
       REQUIRE((test_ReallyLongInt->toString()) == "3");
       delete test_ReallyLongInt;
+
+      test_ReallyLongInt = new ReallyLongInt(2);
+      INFO("Testing toBinaryString") //Displayed if fails
+      REQUIRE((test_ReallyLongInt->toStringBinary()) == "10");
+      delete test_ReallyLongInt;
     }
 
 
-  SECTION("toBinary test")
+  SECTION("Add and Sub test")
     {
-      test_ReallyLongInt = new ReallyLongInt(2);
-      INFO("Testing toBinaryString") //Displayed if fails
-      REQUIRE((test_ReallyLongInt->toStringBinary()) == "0100000000000000");
-      delete test_ReallyLongInt;
+      INFO("pos + pos fail") //Displayed if fails
+      ReallyLongInt a(3);
+      ReallyLongInt b(1);
+      ReallyLongInt c;
+      REQUIRE(((a+b).toString()) == "4");
+      
+      a = ReallyLongInt(1); //1 + 1
+      b = ReallyLongInt(3);
+      REQUIRE(((a+b).toString()) == "4");
+
+      a = ReallyLongInt(7);
+      b = ReallyLongInt(7);
+      REQUIRE(((a+b).toString()) == "14");
+
+      INFO("pos - pos fail") //Displayed if fails
+      REQUIRE(((a-b).toString()) == "0");
+
+      a = ReallyLongInt(8);
+      b = ReallyLongInt(7);
+      REQUIRE(((a-b).toString()) == "1");
+
+      a = ReallyLongInt(4);
+      b = ReallyLongInt(8);
+      REQUIRE(((a-b).toString()) == "-4");
+
+      INFO("pos neg fail")
+      a = ReallyLongInt(-4);//neg and pos
+      REQUIRE(((a-b).toString()) == "-12");
+      REQUIRE(((a+b).toString()) == "4");
+      b = ReallyLongInt(-2);//neg and neg
+      REQUIRE(((a-b).toString()) == "-2");
+      REQUIRE(((a+b).toString()) == "-6");
+      a = ReallyLongInt(4);//pos and neg
+      REQUIRE(((a-b).toString()) == "6");
+      REQUIRE(((a+b).toString()) == "2");
+    }
+
+  SECTION("mult test")
+    {
+
     }
 
 
