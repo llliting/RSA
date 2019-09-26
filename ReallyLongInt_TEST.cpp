@@ -171,10 +171,38 @@ TEST_CASE("TESTING ReallyLongInt Class")
 
   SECTION("mult test")
     {
+      ReallyLongInt a(7);
+      ReallyLongInt b(7);
+      INFO("multiplication fail")
+      REQUIRE(((a*b).toString()) == "49");
 
+      a = ReallyLongInt(2);
+      REQUIRE(((a*b).toString()) == "14");
+
+      b = ReallyLongInt(2);
+      a = ReallyLongInt(15);
+      REQUIRE(((a*b).toString()) == "30");
+
+      a = -a;
+      REQUIRE(((a*b).toString()) == "-30");
     }
 
+  SECTION("div test")
+    {
+      ReallyLongInt a(7);
+      ReallyLongInt b(7);
+      INFO("division test fail")
+      REQUIRE(((a/b).toString()) == "1");
+      REQUIRE(((a%b).toString()) == "0");
 
+      a = ReallyLongInt(15);
+      REQUIRE(((a/b).toString()) == "2");
+      REQUIRE(((a%b).toString()) == "1");
+
+      a = -a;
+      REQUIRE(((a/b).toString()) == "-2");
+      REQUIRE(((a%b).toString()) == "1");
+    }
 }
 
 

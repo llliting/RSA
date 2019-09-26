@@ -295,6 +295,13 @@ void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient,
     remainder = r;
 }
 
+void ReallyLongInt::div (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
+    absDiv(other, quotient, remainder);
+    if(isNeg != other.isNeg)
+        quotient = -quotient;
+}
+
+
 ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y){
     return x.mult(y);
 }
@@ -305,6 +312,20 @@ ReallyLongInt operator+(const ReallyLongInt& x, const ReallyLongInt& y){
 
 ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y){
     return x.sub(y);
+}
+
+ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y){
+    ReallyLongInt q;
+    ReallyLongInt r;
+    x.div(y, q, r);
+    return q;
+}
+
+ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y){
+    ReallyLongInt q;
+    ReallyLongInt r;
+    x.div(y, q, r);
+    return r;
 }
 
 /*
