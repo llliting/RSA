@@ -324,34 +324,3 @@ ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y){
     x.div(y, q, r);
     return r;
 }
-
-/*
-int main(){
-    
-    long long a;
-    long long b;
-    printf("a: ");
-    cin >> a;
-    printf("b : ");
-    cin >> b;
-    ReallyLongInt x(a);
-    ReallyLongInt y(b);
-    //cout << x.toStringBinary() << endl;
-    //ReallyLongInt ans = x.absMult(y);
-    //ReallyLongInt y = -x;
-    //cout << "ans: " << ans.toString() << endl;
-    
-   
-    //ReallyLongInt c(4);
-    //ReallyLongInt d(2);
-    ReallyLongInt q;
-    ReallyLongInt r;
-    x.absDiv (y, q, r);
-
-   // ReallyLongInt d;
-     //c = c + d ;
-    cout << "q: " << q.toString() << endl;
-    cout << "r: " << r.toString() << endl;
-
-}
-*/
