@@ -106,7 +106,7 @@ bool ReallyLongInt::greater(const ReallyLongInt& other) const{
 string ReallyLongInt::toString() const{
     unsigned long long num = 0;
     for(unsigned int i = 0; i < size; i++)
-        num += ( (*digits)[i] == 1 ? pow(2, i):0);
+        num += ((*digits)[i] == 1 ? pow(2, i):0);
     return (isNeg ? ("-" + to_string(num)) : to_string(num));
 }
 
@@ -174,11 +174,9 @@ ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
     unsigned int i = 0;
     for(; i < ans.size ; i ++){
         (*ans.digits)[i] = carry ^ (*digits)[i] ^ (*(other.digits))[i];
-        if(((*digits)[i] & (*other.digits)[i]) == 1)
-            carry = 1;
-        else if((carry & (*(other.digits))[i]) == 1)
-            carry = 1;
-        else if (((*digits)[i] & carry ) == 1)
+        if((((*digits)[i] & (*other.digits)[i]) == 1) 
+            || ((carry & (*(other.digits))[i]) == 1) 
+            || (((*digits)[i] & carry ) == 1))
             carry = 1;
         else
             carry = 0;
@@ -247,7 +245,6 @@ ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
         for(unsigned int j = 0; j < other.size; j ++){
             mul = (*digits)[i] & (*other.digits)[j];
             if(mul && (*ans)[i+j]){
-
                 if( (*ans)[i+j+1] == 1){
                     (*ans)[i+j+1] = 0;
                     (*ans)[i+j+2] = 1;
@@ -277,7 +274,7 @@ void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient,
     ReallyLongInt r;    
     ReallyLongInt d;
     ReallyLongInt q;
-    int helper = 1;
+    int helper = pow(2,size);
     for(int i = size-1; i >= 0; i --){
         r = r * 2;
         if((*digits)[i] == 1) 
@@ -287,7 +284,7 @@ void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient,
             r = r - other;
             d = d + 1;
         }
-    helper = pow(2,i);
+    helper /= 2;
     d = d * helper;
     q = q + d;
     }
