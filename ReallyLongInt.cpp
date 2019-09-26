@@ -325,9 +325,18 @@ ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y){
     return r;
 }
 
+ReallyLongInt operator>(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.greater(y);
+}
+
+ReallyLongInt operator==(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.equal(y);
+}
+
+
+
 /*
 int main(){
-    
     long long a;
     long long b;
     printf("a: ");
@@ -336,6 +345,8 @@ int main(){
     cin >> b;
     ReallyLongInt x(a);
     ReallyLongInt y(b);
+   // bool z = (x>y);
+    //cout << z << endl;
     //cout << x.toStringBinary() << endl;
     //ReallyLongInt ans = x.absMult(y);
     //ReallyLongInt y = -x;
@@ -344,14 +355,13 @@ int main(){
    
     //ReallyLongInt c(4);
     //ReallyLongInt d(2);
-    ReallyLongInt q;
-    ReallyLongInt r;
-    x.absDiv (y, q, r);
+    //ReallyLongInt q;
+    //ReallyLongInt r;
+    //x.absDiv (y, q, r);
 
    // ReallyLongInt d;
      //c = c + d ;
-    cout << "q: " << q.toString() << endl;
-    cout << "r: " << r.toString() << endl;
-
+    ///cout << "q: " << q.toString() << endl;
+    //cout << "r: " << r.toString() << endl;
 }
 */
