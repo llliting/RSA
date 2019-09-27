@@ -25,6 +25,7 @@ class ReallyLongInt
         void flipSign();
         void absDiv (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const;
         ReallyLongInt absMult(const ReallyLongInt& other) const;
+        ReallyLongInt recurExpo(const ReallyLongInt& e) const;
 
         
 
@@ -51,6 +52,11 @@ class ReallyLongInt
         ReallyLongInt& operator=(const ReallyLongInt& other);
 
 
+        ReallyLongInt exponent(const ReallyLongInt& e)const;
+        bool isPrime() const;
+
+
+
 
 };
 ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y);
@@ -58,6 +64,15 @@ ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y);
 ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y);
 ReallyLongInt operator+(const ReallyLongInt& x, const ReallyLongInt& y);
 ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y);
+bool operator==(const ReallyLongInt& x, const ReallyLongInt& y);
+bool operator<=(const ReallyLongInt& x, const ReallyLongInt& y);
+bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y);
+bool operator<(const ReallyLongInt& x, const ReallyLongInt& y);
+bool operator>(const ReallyLongInt& x, const ReallyLongInt& y);
+
+
+
+
 
 
 

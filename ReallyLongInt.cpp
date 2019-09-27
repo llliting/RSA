@@ -122,6 +122,8 @@ string ReallyLongInt::toStringBinary() const{
 
 
 
+
+
 void ReallyLongInt::removeLeadingZeros(void){
     for(int i = size-1; i >= 0; i--){
         if((*digits)[i] == 1){
@@ -325,17 +327,70 @@ ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y){
     return r;
 }
 
-ReallyLongInt operator>(const ReallyLongInt& x, const ReallyLongInt& y){
-    return x.greater(y);
+
+
+
+
+
+
+
+ReallyLongInt ReallyLongInt::recurExpo(const ReallyLongInt& e) const{
+    if(e == 0)
+        return ReallyLongInt(1);
+    else if((*e.digits)[0])
+        return (*this) * recurExpo(e/2) * recurExpo(e/2);
+    else
+        return recurExpo(e/2) * recurExpo(e/2);
 }
 
-ReallyLongInt operator==(const ReallyLongInt& x, const ReallyLongInt& y){
+ReallyLongInt ReallyLongInt::exponent(const ReallyLongInt& e)const{
+    return recurExpo(e);
+}
+
+bool ReallyLongInt::isPrime() const{
+    if(*this <= 3) //1,2,3
+        return true;
+    else if(!(*digits)[0]) // even number
+        return false;
+    else 
+
+}
+
+
+
+bool operator==(const ReallyLongInt& x, const ReallyLongInt& y){
     return x.equal(y);
 }
 
+bool operator<(const ReallyLongInt& x, const ReallyLongInt& y){
+    return y.greater(x);
+}
+
+bool operator>(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.greater(y);
+}
+
+bool operator<=(const ReallyLongInt& x, const ReallyLongInt& y){
+    return (x<y)||(x==y); 
+}
+
+bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
+    return (y<x)||(x==y); 
+}
 
 
-/*
+
+
+
+
+
+
+
+
+
+
+
+
 int main(){
     long long a;
     long long b;
@@ -345,12 +400,13 @@ int main(){
     cin >> b;
     ReallyLongInt x(a);
     ReallyLongInt y(b);
+    
    // bool z = (x>y);
     //cout << z << endl;
     //cout << x.toStringBinary() << endl;
-    //ReallyLongInt ans = x.absMult(y);
+    ReallyLongInt ans = x.exponent(y);
     //ReallyLongInt y = -x;
-    //cout << "ans: " << ans.toString() << endl;
+    cout << "ans: " << ans.toString() << endl;
     
    
     //ReallyLongInt c(4);
@@ -364,4 +420,4 @@ int main(){
     ///cout << "q: " << q.toString() << endl;
     //cout << "r: " << r.toString() << endl;
 }
-*/
+
