@@ -91,7 +91,6 @@ bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
             return 1;
         return 0;
     }
-    
 }
 
 bool ReallyLongInt::greater(const ReallyLongInt& other) const{

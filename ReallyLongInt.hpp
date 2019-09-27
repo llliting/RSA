@@ -34,7 +34,6 @@ class ReallyLongInt
         ReallyLongInt(long long num);
         ReallyLongInt(const string& numStr);
         ReallyLongInt(const ReallyLongInt& other);
-
         string toString() const;
         string toStringBinary() const;
         bool equal(const ReallyLongInt& other) const;
