@@ -346,6 +346,7 @@ ReallyLongInt ReallyLongInt::exponent(const ReallyLongInt& e)const{
     return recurExpo(e);
 }
 
+
 bool ReallyLongInt::isPrime() const{
     if(*this <= 3) //1,2,3
         return true;
@@ -391,29 +392,22 @@ bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
 
 
 int main(){
-    long long a;
-    long long b;
-    printf("a: ");
-    cin >> a;
-    printf("b : ");
-    cin >> b;
-    ReallyLongInt x(a);
-    ReallyLongInt y(b);
+    //long long a;
+    //long long b;
+    //printf("a: ");
+    //cin >> a;
+    //printf("b : ");
+    //cin >> b;
+    //ReallyLongInt x(a);
+    //ReallyLongInt y(b);
     
    // bool z = (x>y);
     //cout << z << endl;
     //cout << x.toStringBinary() << endl;
-    ReallyLongInt ans = x.exponent(y);
+    //ReallyLongInt ans = x.exponent(y);
     //ReallyLongInt y = -x;
-    cout << "ans: " << ans.toString() << endl;
+    //cout << "ans: " << ans.toString() << endl;
     
-   
-    //ReallyLongInt c(4);
-    //ReallyLongInt d(2);
-    //ReallyLongInt q;
-    //ReallyLongInt r;
-    //x.absDiv (y, q, r);
-
    // ReallyLongInt d;
      //c = c + d ;
     ///cout << "q: " << q.toString() << endl;

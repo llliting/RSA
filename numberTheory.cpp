@@ -1,4 +1,6 @@
 #include "numberTheory.hpp"
+#include "ReallyLongInt.cpp"
+
 
 using namespace std;
 
