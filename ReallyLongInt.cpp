@@ -4,7 +4,7 @@
 #include <string>
 #include "ReallyLongInt.hpp"
 #include <cmath>
-#include "numberTheory.hpp"
+//#include "numberTheory.hpp"
 
 
 using namespace std;
