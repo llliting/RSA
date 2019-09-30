@@ -4,6 +4,7 @@
 #include <string>
 #include "ReallyLongInt.hpp"
 #include <cmath>
+#include "numberTheory.hpp"
 
 
 using namespace std;
@@ -394,25 +395,29 @@ bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
 
 
 int main(){
-    //long long a;
-    //long long b;
-    //printf("a: ");
-    //cin >> a;
-    //printf("b : ");
-    //cin >> b;
-    //ReallyLongInt x(a);
-    //ReallyLongInt y(b);
-    
+    long long a;
+    long long b;
+    printf("a: ");
+    cin >> a;
+    printf("b : ");
+    cin >> b;
+    ReallyLongInt x(a);
+    ReallyLongInt y(b);
+    ReallyLongInt* p = new ReallyLongInt();
+    ReallyLongInt* q = new ReallyLongInt();
+    ReallyLongInt z = numberTheory::extendedEulid(x, y, p, q);
+
+    cout << "ans: " << z.toString() << endl;
+    cout << "p: " << p->toString() << endl;
+    cout << "q: " << q->toString() << endl;
+
+
    // bool z = (x>y);
     //cout << z << endl;
     //cout << x.toStringBinary() << endl;
     //ReallyLongInt ans = x.exponent(y);
     //ReallyLongInt y = -x;
     //cout << "ans: " << ans.toString() << endl;
-    
-   // ReallyLongInt d;
-     //c = c + d ;
-    ///cout << "q: " << q.toString() << endl;
-    //cout << "r: " << r.toString() << endl;
+
 }
 

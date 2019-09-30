@@ -2,8 +2,11 @@
 #define NUMBERTHEORY_H
 
 #include "ReallyLongInt.cpp"
+#include "ReallyLongInt.hpp"
+
 using namespace std;
 
-std::tuple <ReallyLongInt, ReallyLongInt, ReallyLongInt> extendedEulid(const ReallyLongInt& a, const ReallyLongInt& b);
+ReallyLongInt extendedEulid(const ReallyLongInt& a, const ReallyLongInt& b, 
+                            ReallyLongInt* output_x, ReallyLongInt* output_y);
 
 #endif
