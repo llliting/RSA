@@ -346,17 +346,19 @@ ReallyLongInt ReallyLongInt::exponent(const ReallyLongInt& e)const{
     return recurExpo(e);
 }
 
-
 bool ReallyLongInt::isPrime() const{
-    if(*this <= 3) //1,2,3
+    if(*this <= 3 && *this > 1) //2,3
         return true;
     else if(!(*digits)[0]) // even number
         return false;
-    else 
-
+    else{
+        for(long long i = 3; i < *this; i += 2){
+            if((*this)%i == 0)
+                return false;
+        }
+        return true;
+    }
 }
-
-
 
 bool operator==(const ReallyLongInt& x, const ReallyLongInt& y){
     return x.equal(y);
