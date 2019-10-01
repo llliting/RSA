@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
 	  while (text.get(c)){
       unsigned long long x =(unsigned long long)c;
       ReallyLongInt y = (x.exponent(e)) % n;
-      encrypt << y.toString();
+      encrypt << (char)y;
     }
 
     text.close();
