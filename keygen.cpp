@@ -1,5 +1,7 @@
 #include "ReallyLongInt.hpp"
 #include "numberTheory.hpp"
+#include "numberTheory.cpp"
+
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -11,6 +13,7 @@ using namespace std;
 
 
 int main(int argc, char *argv[]){
+
     ReallyLongInt a(stoll(argv[1]));
     ReallyLongInt b(stoll(argv[2]));
 
@@ -26,24 +29,28 @@ int main(int argc, char *argv[]){
     n = a * b;
     t = (a-1) * (b-1);
 
-    ReallyLongInt* x;
-    ReallyLongInt* y;
+    ReallyLongInt* x = new ReallyLongInt();
+    ReallyLongInt* y = new ReallyLongInt();
     ReallyLongInt gcd;
     ReallyLongInt d;
-    long long e = 2;
-    for(; e < t; e ++){
-        numberTheory nt;
+    ReallyLongInt e(2);
+    numberTheory nt;
+    for(; e < t; e = e+1){
         gcd = nt.extendedEulid(e, t, x, y);
         if(gcd == 1)
             break;
+        
     }
     d = *x;
     if(d < 0)
         d = d + t;
 
-    pkfile << e << " " << n.toString() << endl;
+    pkfile << e.toString() << " " << n.toString() << endl;
     skfile << d.toString() << " " << n.toString() << endl;
 
     pkfile.close();
     skfile.close();
+    delete x;
+    delete y;
+    return 0;
 }

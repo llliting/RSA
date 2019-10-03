@@ -2,15 +2,18 @@
 #include "numberTheory.hpp"
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
 int main(int argc, char *argv[]){
-    ifstream kfile(argv[1]);
+    ifstream kfile;
+    kfile.open(argv[1]);
+    if (!kfile.good()) throw "I/O error";
     string e_str;
     string n_str;
-    fin>>e_str;
-    fin>>n_str;
+    kfile>>e_str;
+    kfile>>n_str;
     ReallyLongInt e(stoll(e_str));
     ReallyLongInt n(stoll(n_str));
     kfile.close();

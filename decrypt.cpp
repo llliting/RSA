@@ -9,8 +9,8 @@ int main(int argc, char *argv[]){
     ifstream kfile(argv[1]);
     string d_str;
     string n_str;
-    fin>>d_str;
-    fin>>n_str;
+    kfile>>d_str;
+    kfile>>n_str;
     ReallyLongInt d(stoll(d_str));
     ReallyLongInt n(stoll(n_str));
     kfile.close();
@@ -19,11 +19,11 @@ int main(int argc, char *argv[]){
 	ofstream decrypt(argv[3]);
 
     char c;
-	while (text.get(c)){
-      unsigned long long y =(unsigned long long)c;
-
+	while (enctext.get(c)){
+      unsigned long long ytemp =(unsigned long long)c;
+      ReallyLongInt y(ytemp);
       ReallyLongInt x = (y.exponent(d)) % n;
-      encrypt << (char)y;
+      decrypt << (char)stoi(x.toString());
     }
 
     enctext.close();
