@@ -282,9 +282,10 @@ void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient,
         if((*digits)[i] == 1) 
             r = r + 1;
         d = 0;
-        while(r.greater(other) || r.equal(other)){
-            r = r - other;
+        while(!other.absGreater(r)){
+            r = r.absSub(other);
             d = d + 1;
+            cout << "r: "<< r.toString() << " d : " << d.toString() << endl; 
         }
     helper /= 2;
     d = d * helper;
@@ -405,19 +406,21 @@ int main(){
     ReallyLongInt y(b);
     ReallyLongInt* p = new ReallyLongInt();
     ReallyLongInt* q = new ReallyLongInt();
-    ReallyLongInt z = numberTheory::extendedEulid(x, y, p, q);
+    //ReallyLongInt z = numberTheory::extendedEulid(x, y, p, q);
 
-    cout << "ans: " << z.toString() << endl;
-    cout << "p: " << p->toString() << endl;
-    cout << "q: " << q->toString() << endl;
+  //  cout << "ans: " << z.toString() << endl;
+    //cout << "p: " << p->toString() << endl;
+    //cout << "q: " << q->toString() << endl;
 
 
    // bool z = (x>y);
     //cout << z << endl;
-    //cout << x.toStringBinary() << endl;
+    ReallyLongInt ans = x/y;
+    cout << ans.toString() << endl;
     //ReallyLongInt ans = x.exponent(y);
     //ReallyLongInt y = -x;
     //cout << "ans: " << ans.toString() << endl;
 
 }
+
 

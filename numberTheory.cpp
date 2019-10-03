@@ -24,11 +24,11 @@ ReallyLongInt extendedEulid(const ReallyLongInt& a, const ReallyLongInt& b,
 /*
 int main(){
     long long a;
-    //long long b;
+    long long b;
     printf("a: ");
     cin >> a;
-    //printf("b : ");
-    //cin >> b;
+    printf("b : ");
+    cin >> b;
     ReallyLongInt x(a);
     ReallyLongInt y(b);
     ReallyLongInt* p = new ReallyLongInt();
@@ -39,3 +39,4 @@ int main(){
     cout << "p: " << p->toString() << endl;
     cout << "q: " << q->toString() << endl;
 }
+*/
