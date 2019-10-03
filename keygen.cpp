@@ -1,7 +1,10 @@
 #include "ReallyLongInt.hpp"
 #include "numberTheory.hpp"
+#include <string>
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <string.h>
 
 
 using namespace std; 
@@ -29,7 +32,8 @@ int main(int argc, char *argv[]){
     ReallyLongInt d;
     long long e = 2;
     for(; e < t; e ++){
-        gcd = extendedEulid(e, t, x, y);
+        numberTheory nt;
+        gcd = nt.extendedEulid(e, t, x, y);
         if(gcd == 1)
             break;
     }
@@ -38,7 +42,7 @@ int main(int argc, char *argv[]){
         d = d + t;
 
     pkfile << e << " " << n.toString() << endl;
-    skfile << d << " " << n.toString() << endl;
+    skfile << d.toString() << " " << n.toString() << endl;
 
     pkfile.close();
     skfile.close();

@@ -285,7 +285,6 @@ void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient,
         while(!other.absGreater(r)){
             r = r.absSub(other);
             d = d + 1;
-            cout << "r: "<< r.toString() << " d : " << d.toString() << endl; 
         }
     helper /= 2;
     d = d * helper;
@@ -394,7 +393,7 @@ bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
 
 
 
-
+/*
 int main(){
     long long a;
     long long b;
@@ -422,5 +421,4 @@ int main(){
     //cout << "ans: " << ans.toString() << endl;
 
 }
-
-
+*/

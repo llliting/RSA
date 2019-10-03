@@ -20,9 +20,10 @@ int main(int argc, char *argv[]){
 
     char c;
 	  while (text.get(c)){
-      unsigned long long x =(unsigned long long)c;
+      unsigned long long a =(unsigned long long)c;
+      ReallyLongInt x(a);
       ReallyLongInt y = (x.exponent(e)) % n;
-      encrypt << (char)y;
+      encrypt << (char)stoi(y.toString());
     }
 
     text.close();
