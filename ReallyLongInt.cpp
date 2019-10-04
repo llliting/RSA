@@ -99,6 +99,8 @@ bool ReallyLongInt::greater(const ReallyLongInt& other) const{
         return false;
     else if(isNeg == false && other.isNeg == true)
         return true;
+    else if(isNeg == true && other.isNeg == true && other.equal(*this))
+        return false;
     else 
         return (isNeg == true ? (!absGreater(other)) : absGreater(other));
 }
@@ -393,7 +395,7 @@ bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
 
 
 
-/*
+
 int main(){
     long long a;
     long long b;
@@ -414,11 +416,11 @@ int main(){
 
    // bool z = (x>y);
     //cout << z << endl;
-    ReallyLongInt ans = x/y;
+    ReallyLongInt ans = x.greater(y);
     cout << ans.toString() << endl;
     //ReallyLongInt ans = x.exponent(y);
     //ReallyLongInt y = -x;
     //cout << "ans: " << ans.toString() << endl;
 
 }
-*/
+
