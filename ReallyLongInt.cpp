@@ -352,7 +352,7 @@ ReallyLongInt ReallyLongInt::exponent(const ReallyLongInt& e)const{
 bool ReallyLongInt::isPrime() const{
     if(*this <= 3 && *this > 1) //2,3
         return true;
-    else if(!(*digits)[0]) // even number
+    else if(!(*digits)[0] || *this == 1) // even number
         return false;
     else{
         for(long long i = 3; i < *this; i += 2){
