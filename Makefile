@@ -3,7 +3,7 @@ FLAGS = -Wall -O0
 DEBUG = --DDEBUG -g
 COVERAGE = --coverage
 
-all: ReallyLongInt
+all: keygen decrypt encrypt
 
 catchdebug: ReallyLongInt_TEST.cpp ReallyLongInt.o
 		$(CC) $(FLAGS) $(CATCHINC) -o ReallyLongIntTest ReallyLongInt_TEST.cpp ReallyLongInt.o
@@ -13,6 +13,15 @@ coverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
 
 ReallyLongInt: ReallyLongInt.cpp
 		$(CC) $(FLAGS) -o ReallyLongInt.exe ReallyLongInt.cpp
+
+keygen: keygen.cpp ReallyLongInt.cpp numberTheory.cpp
+		$(CC) $(FLAGS) -o keygen.exe keygen.cpp
+
+encrypt: ReallyLongInt.cpp numberTheory.cpp
+		$(CC) $(FLAGS) -o encrypt.exe encrypt.cpp
+
+decrypt: ReallyLongInt.cpp numberTheory.cpp
+		$(CC) $(FLAGS) -o decrypt.exe decrypt.cpp
 
 cleantest:
 	rm *.gcov;
