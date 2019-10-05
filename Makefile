@@ -22,7 +22,7 @@ cleantest:
 	rm a.out;
 
 clean:
-	rm ReallyLongInt.exe;
+	rm *.exe;
 
 
 
