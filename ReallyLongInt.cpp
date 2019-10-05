@@ -159,7 +159,7 @@ void ReallyLongInt::flipSign(){
     if(toString() == "0")
         isNeg = false;
     else 
-        isNeg = (isNeg == true ? false : true);
+        isNeg = (!isNeg);
 }
 
 ReallyLongInt ReallyLongInt::operator-() const{
@@ -197,7 +197,7 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
     vector<bool>* smaller;
     if(equal(other) || equal(-other))
       return ReallyLongInt(0);
-    ans.isNeg = absGreater(other) ? false : true;
+    ans.isNeg = (!absGreater(other));
     if(ans.isNeg){
         larger = other.digits;
         smaller = this->digits;
@@ -217,10 +217,10 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
             borrow = 0;
         }
         else if(((*larger)[i] == (*smaller)[i])){
-            (*ans.digits)[i] = (borrow == 0 ? 0 : 1);
+            (*ans.digits)[i] = (borrow != 0);
         }
         else{
-            (*ans.digits)[i] = (borrow == 0 ? 1 : 0);
+            (*ans.digits)[i] = (borrow == 0);
             borrow = 1;
         }
      }
