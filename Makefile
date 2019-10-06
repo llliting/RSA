@@ -5,8 +5,13 @@ COVERAGE = --coverage
 
 all: keygen decrypt encrypt
 
+debug: catchdebug ntdebug
+
 catchdebug: ReallyLongInt_TEST.cpp ReallyLongInt.o
 		$(CC) $(FLAGS) $(CATCHINC) -o ReallyLongIntTest ReallyLongInt_TEST.cpp ReallyLongInt.o
+
+ntdebug: numberTheory_TEST.cpp numberTheory.o
+		$(CC) $(FLAGS) $(CATCHINC) -o numberTheoryTest numberTheory_TEST.cpp numberTheory.o
 
 coverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
 		$(CC) $(CFLAGE) $(CATCHINC) $(COVERAGE) ReallyLongInt_TEST.cpp ReallyLongInt.cpp
@@ -36,3 +41,4 @@ clean:
 
 
 
+ 

@@ -36,7 +36,7 @@ int main(int argc, char *argv[]){
     ReallyLongInt e(2);
     numberTheory nt;
     for(; e < t; e = e+1){
-        gcd = nt.extendedEulid(e, t, x, y);
+        gcd = nt.extendedEuclid(e, t, x, y);
         if(gcd == 1)
             break;
         

@@ -8,7 +8,7 @@ using namespace std;
 
 
 
-ReallyLongInt numberTheory::extendedEulid(const ReallyLongInt& a, const ReallyLongInt& b, 
+ReallyLongInt numberTheory::extendedEuclid(const ReallyLongInt& a, const ReallyLongInt& b, 
                             ReallyLongInt* output_x, ReallyLongInt* output_y){
     if(b == 0){
         *output_x = ReallyLongInt(1);
@@ -16,7 +16,7 @@ ReallyLongInt numberTheory::extendedEulid(const ReallyLongInt& a, const ReallyLo
         return a;
     }
     else{
-       ReallyLongInt d = extendedEulid(b, a%b, output_x, output_y);
+       ReallyLongInt d = extendedEuclid(b, a%b, output_x, output_y);
        ReallyLongInt temp = *output_x;
        *output_x = *output_y;
        *output_y = temp - ((*output_y) * (a / b));
@@ -36,7 +36,7 @@ int main(){
     ReallyLongInt* p = new ReallyLongInt();
     ReallyLongInt* q = new ReallyLongInt();
     numberTheory nt;
-    ReallyLongInt z = nt.extendedEulid(x, y, p, q);
+    ReallyLongInt z = nt.extendedEuclid(x, y, p, q);
 
     cout << "ans: " << z.toString() << endl;
     cout << "p: " << p->toString() << endl;
