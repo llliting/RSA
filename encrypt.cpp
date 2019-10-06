@@ -16,6 +16,7 @@ int main(int argc, char *argv[]){
     kfile>>n_str;
     ReallyLongInt e(stoll(e_str));
     ReallyLongInt n(stoll(n_str));
+    cout << "e: " << e.toString() << " n:" << n.toString() << endl;
     kfile.close();
 
     ifstream text(argv[2]);
@@ -24,8 +25,12 @@ int main(int argc, char *argv[]){
     char c;
 	  while (text.get(c)){
       unsigned long long a =(unsigned long long)c;
+      cout << "a:"  << a  << endl;
       ReallyLongInt x(a);
       ReallyLongInt y = (x.exponent(e)) % n;
+      cout << "exp: " << x.exponent(e).toString();
+      cout << "y:" << y.toString() << endl;
+      cout << "ascii: " << stoi(y.toString()) << endl;
       encrypt << (char)stoi(y.toString());
     }
 

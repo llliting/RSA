@@ -38,11 +38,10 @@ int main(int argc, char *argv[]){
     for(; e < t; e = e+1){
         gcd = nt.extendedEuclid(e, t, x, y);
         if(gcd == 1)
-            break;
-        
+            break;       
     }
     d = *x;
-    if(d < 0)
+    while(d < 0)////////?? while or if
         d = d + t;
 
     pkfile << e.toString() << " " << n.toString() << endl;

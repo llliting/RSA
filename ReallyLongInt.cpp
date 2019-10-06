@@ -395,7 +395,7 @@ bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
 
 
 
-/*
+
 int main(){
     long long a;
     long long b;
@@ -405,8 +405,8 @@ int main(){
     cin >> b;
     ReallyLongInt x(a);
     ReallyLongInt y(b);
-    ReallyLongInt* p = new ReallyLongInt();
-    ReallyLongInt* q = new ReallyLongInt();
+    //ReallyLongInt* p = new ReallyLongInt();
+    //ReallyLongInt* q = new ReallyLongInt();
     //ReallyLongInt z = numberTheory::extendedEulid(x, y, p, q);
 
   //  cout << "ans: " << z.toString() << endl;
@@ -416,7 +416,7 @@ int main(){
 
    // bool z = (x>y);
     //cout << z << endl;
-    ReallyLongInt ans = x.greater(y);
+    ReallyLongInt ans = x.exponent(y);
     cout << ans.toString() << endl;
     //ReallyLongInt ans = x.exponent(y);
     //ReallyLongInt y = -x;
@@ -424,4 +424,3 @@ int main(){
 
 }
 
-*/

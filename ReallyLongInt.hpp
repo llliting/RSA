@@ -14,8 +14,8 @@ using namespace std;
 
 class ReallyLongInt
 {   
-    //private:
-    public:
+    private:
+    //public:
         void init(long long num);
         vector<bool>* digits;
         unsigned int size;
@@ -29,7 +29,7 @@ class ReallyLongInt
 
         
 
-   // public:
+    public:
         ReallyLongInt();
         ReallyLongInt(long long num);
         ReallyLongInt(const string& numStr);
