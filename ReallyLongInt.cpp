@@ -48,7 +48,6 @@ ReallyLongInt::ReallyLongInt(const string& numStr){
     ReallyLongInt::init(stoll(numStr));
 }
 
-
 ReallyLongInt::ReallyLongInt(const ReallyLongInt& other){
     size = other.size;
     digits = new vector<bool> (size, false);
@@ -57,11 +56,9 @@ ReallyLongInt::ReallyLongInt(const ReallyLongInt& other){
         (*digits)[i] = (*(other.digits))[i];
 }
 
-
 ReallyLongInt::~ReallyLongInt(){
     delete digits;
 }
-
 
 bool ReallyLongInt::equal(const ReallyLongInt& other) const{
     if(isNeg != other.isNeg)
@@ -240,7 +237,7 @@ ReallyLongInt ReallyLongInt::sub(const ReallyLongInt& other) const{
 }
 
 ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
-    vector<bool>* ans = new vector<bool> (size + other.size, false);
+    vector<bool>* ans = new vector<bool> (size * other.size, false);
     bool mul;
     int i, j, carry;
     for(i = 0; i < size; i ++){
@@ -258,7 +255,7 @@ ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
         }
     }
     ReallyLongInt answer;
-    answer.size = size + other.size;
+    answer.size = size * other.size;
     delete answer.digits;
     answer.digits = ans;
     answer.removeLeadingZeros();
@@ -331,10 +328,10 @@ ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y){
 ReallyLongInt ReallyLongInt::recurExpo(const ReallyLongInt& e) const{
     if(e == 0)
         return ReallyLongInt(1);
-    else if((*e.digits)[0]){
-        return ((*this) * recurExpo(e/2))* recurExpo(e/2);}
-    else{
-        return recurExpo(e/2) * recurExpo(e/2);}
+    else if((*e.digits)[0])
+        return ((*this) * recurExpo(e/2))* recurExpo(e/2);
+    else
+        return recurExpo(e/2) * recurExpo(e/2);
 }
 
 ReallyLongInt ReallyLongInt::exponent(const ReallyLongInt& e)const{
@@ -386,17 +383,20 @@ bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
 
 
 
-
+/*
 int main(){
     long long a;
-    long long b;
+    long long b,c;
     printf("a: ");
     cin >> a;
     printf("b : ");
     cin >> b;
     ReallyLongInt x(a);
     ReallyLongInt y(b);
-    cout << x.toString() << endl;
+    printf("c: ");
+    cin >> c;
+    ReallyLongInt z(c);
+    //cout << x.toString() << endl;
     //ReallyLongInt* p = new ReallyLongInt();
     //ReallyLongInt* q = new ReallyLongInt();
     //ReallyLongInt z = numberTheory::extendedEulid(x, y, p, q);
@@ -408,11 +408,13 @@ int main(){
 
    // bool z = (x>y);
     //cout << z << endl;
-    //ReallyLongInt ans = x.exponent(y);
-    //cout << ans.toString() << endl;
+    ReallyLongInt ans = x.exponent(y);
+    ans = ans %c;
+    
     //ReallyLongInt ans = x.exponent(y);
     //ReallyLongInt y = -x;
-    //cout << "ans: " << ans.toString() << endl;
+    cout << "ans: " << ans.toString() << endl;
+    cout << ans.toStringBinary()<<endl;
 
 }
-
+*/

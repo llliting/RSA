@@ -7,6 +7,12 @@
 using namespace std;
 
 int main(int argc, char *argv[]){
+
+    if (argc != 4) {
+        cout << "Wrong Number of Command Line Arguments Passed";
+        return 0;
+    }
+
     ifstream kfile;
     kfile.open(argv[1]);
     if (!kfile.good()) throw "I/O error";
@@ -31,6 +37,8 @@ int main(int argc, char *argv[]){
       cout << "exp: " << x.exponent(e).toString();
       cout << "y:" << y.toString() << endl;
       cout << "ascii: " << stoi(y.toString()) << endl;
+      //encrypt << '0' + stoi(y.toString());
+      //cout << (char)stoi(y.toString());
       encrypt << (char)stoi(y.toString());
     }
 
