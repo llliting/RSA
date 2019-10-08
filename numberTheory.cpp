@@ -23,23 +23,3 @@ ReallyLongInt numberTheory::extendedEuclid(const ReallyLongInt& a, const ReallyL
        return d;
     }
 }
-/*
-int main(){
-    long long a;
-    long long b;
-    printf("a: ");
-    cin >> a;
-    printf("b : ");
-    cin >> b;
-    ReallyLongInt x(a);
-    ReallyLongInt y(b);
-    ReallyLongInt* p = new ReallyLongInt();
-    ReallyLongInt* q = new ReallyLongInt();
-    numberTheory nt;
-    ReallyLongInt z = nt.extendedEuclid(x, y, p, q);
-
-    cout << "ans: " << z.toString() << endl;
-    cout << "p: " << p->toString() << endl;
-    cout << "q: " << q->toString() << endl;
-}
-*/

@@ -383,38 +383,3 @@ bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
 
 
 
-/*
-int main(){
-    long long a;
-    long long b,c;
-    printf("a: ");
-    cin >> a;
-    printf("b : ");
-    cin >> b;
-    ReallyLongInt x(a);
-    ReallyLongInt y(b);
-    printf("c: ");
-    cin >> c;
-    ReallyLongInt z(c);
-    //cout << x.toString() << endl;
-    //ReallyLongInt* p = new ReallyLongInt();
-    //ReallyLongInt* q = new ReallyLongInt();
-    //ReallyLongInt z = numberTheory::extendedEulid(x, y, p, q);
-
-  //  cout << "ans: " << z.toString() << endl;
-    //cout << "p: " << p->toString() << endl;
-    //cout << "q: " << q->toString() << endl;
-
-
-   // bool z = (x>y);
-    //cout << z << endl;
-    ReallyLongInt ans = x.exponent(y);
-    ans = ans %c;
-    
-    //ReallyLongInt ans = x.exponent(y);
-    //ReallyLongInt y = -x;
-    cout << "ans: " << ans.toString() << endl;
-    cout << ans.toStringBinary()<<endl;
-
-}
-*/
