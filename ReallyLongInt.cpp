@@ -107,8 +107,11 @@ bool ReallyLongInt::greater(const ReallyLongInt& other) const{
 
 string ReallyLongInt::toString() const{
     unsigned long long num = 0;
-    for(unsigned int i = 0; i < size; i++)
-        num += ((*digits)[i] == 1 ? pow(2, i):0);
+    unsigned long long curr = 1;
+    for(unsigned int i = 0; i < size; i++){
+        num += ((*digits)[i] == 1 ? curr:0);
+        curr *= 2;
+    }
     return (isNeg ? ("-" + to_string(num)) : to_string(num));
 }
 
@@ -297,7 +300,6 @@ void ReallyLongInt::div (const ReallyLongInt& other, ReallyLongInt& quotient, Re
         quotient = -quotient;
 }
 
-
 ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y){
     return x.mult(y);
 }
@@ -384,7 +386,6 @@ bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
 
 
 
-/*
 
 int main(){
     long long a;
@@ -395,6 +396,7 @@ int main(){
     cin >> b;
     ReallyLongInt x(a);
     ReallyLongInt y(b);
+    cout << x.toString() << endl;
     //ReallyLongInt* p = new ReallyLongInt();
     //ReallyLongInt* q = new ReallyLongInt();
     //ReallyLongInt z = numberTheory::extendedEulid(x, y, p, q);
@@ -406,11 +408,11 @@ int main(){
 
    // bool z = (x>y);
     //cout << z << endl;
-    ReallyLongInt ans = x.exponent(y);
-    cout << ans.toString() << endl;
+    //ReallyLongInt ans = x.exponent(y);
+    //cout << ans.toString() << endl;
     //ReallyLongInt ans = x.exponent(y);
     //ReallyLongInt y = -x;
     //cout << "ans: " << ans.toString() << endl;
 
 }
-*/
+
