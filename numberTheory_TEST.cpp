@@ -2,6 +2,7 @@
 #include "catch.hpp"
 #include "numberTheory.hpp"
 #include "ReallyLongInt.hpp"
+#include <iostream>
 #include <string>
 
 

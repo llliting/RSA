@@ -5,13 +5,15 @@ COVERAGE = --coverage
 
 all: keygen decrypt encrypt
 
-debug: catchdebug ntdebug
+debug: rlidebug ntdebug
 
-catchdebug: ReallyLongInt_TEST.cpp ReallyLongInt.o
+rlidebug: ReallyLongInt_TEST.cpp ReallyLongInt.o
 		$(CC) $(FLAGS) $(CATCHINC) -o ReallyLongIntTest ReallyLongInt_TEST.cpp ReallyLongInt.o
+		./ReallyLongIntTest
 
-ntdebug: numberTheory_TEST.cpp numberTheory.o
+ntdebug: numberTheory_TEST.cpp numberTheory.o ReallyLongInt.o
 		$(CC) $(FLAGS) $(CATCHINC) -o numberTheoryTest numberTheory_TEST.cpp numberTheory.o
+		./numberTheoryTest
 
 coverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
 		$(CC) $(CFLAGE) $(CATCHINC) $(COVERAGE) ReallyLongInt_TEST.cpp ReallyLongInt.cpp
@@ -22,7 +24,6 @@ ReallyLongInt: ReallyLongInt.cpp
 numberTheory: numberTheory.cpp
 		$(CC) $(FLAGS) -o numberTheory.exe numberTheory.cpp
 
-
 keygen: keygen.cpp ReallyLongInt.cpp numberTheory.cpp
 		$(CC) $(FLAGS) -o keygen.exe keygen.cpp
 
@@ -32,15 +33,11 @@ encrypt: ReallyLongInt.cpp numberTheory.cpp
 decrypt: ReallyLongInt.cpp numberTheory.cpp
 		$(CC) $(FLAGS) -o decrypt.exe decrypt.cpp
 
-cleantest:
-	rm *.gcov;
-	rm *.gcda;
-	rm *.gcno;
-	rm *.o;
-	rm a.out;
-
 clean:
-	rm *.exe;
+	rm -f *.o *.gcda *.info *.gcno *.gcov *.dSYM *.exe numberTheory_TEST coverage a.out ReallyLongInt_TEST *.txt
+
+
+
 
 
 
