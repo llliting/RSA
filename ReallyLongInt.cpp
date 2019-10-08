@@ -4,6 +4,7 @@
 #include <string>
 #include "ReallyLongInt.hpp"
 #include <cmath>
+//#include "numberTheory.hpp"
 
 
 using namespace std;
@@ -91,7 +92,6 @@ bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
             return 1;
         return 0;
     }
-    
 }
 
 bool ReallyLongInt::greater(const ReallyLongInt& other) const{
@@ -99,6 +99,8 @@ bool ReallyLongInt::greater(const ReallyLongInt& other) const{
         return false;
     else if(isNeg == false && other.isNeg == true)
         return true;
+    else if(isNeg == true && other.isNeg == true && other.equal(*this))
+        return false;
     else 
         return (isNeg == true ? (!absGreater(other)) : absGreater(other));
 }
@@ -117,10 +119,6 @@ string ReallyLongInt::toStringBinary() const{
     str  +=  ((*digits)[0] == 1 ? "1" : "0");  
     return str;
 }
-
-
-
-
 
 void ReallyLongInt::removeLeadingZeros(void){
     for(int i = size-1; i >= 0; i--){
@@ -155,7 +153,7 @@ void ReallyLongInt::flipSign(){
     if(toString() == "0")
         isNeg = false;
     else 
-        isNeg = (isNeg == true ? false : true);
+        isNeg = (!isNeg);
 }
 
 ReallyLongInt ReallyLongInt::operator-() const{
@@ -193,7 +191,7 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
     vector<bool>* smaller;
     if(equal(other) || equal(-other))
       return ReallyLongInt(0);
-    ans.isNeg = absGreater(other) ? false : true;
+    ans.isNeg = (!absGreater(other));
     if(ans.isNeg){
         larger = other.digits;
         smaller = this->digits;
@@ -213,10 +211,10 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
             borrow = 0;
         }
         else if(((*larger)[i] == (*smaller)[i])){
-            (*ans.digits)[i] = (borrow == 0 ? 0 : 1);
+            (*ans.digits)[i] = (borrow != 0);
         }
         else{
-            (*ans.digits)[i] = (borrow == 0 ? 1 : 0);
+            (*ans.digits)[i] = (borrow == 0);
             borrow = 1;
         }
      }
@@ -241,16 +239,17 @@ ReallyLongInt ReallyLongInt::sub(const ReallyLongInt& other) const{
 ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
     vector<bool>* ans = new vector<bool> (size + other.size, false);
     bool mul;
-    for(unsigned int i = 0; i < size; i ++){
-        for(unsigned int j = 0; j < other.size; j ++){
-            mul = (*digits)[i] & (*other.digits)[j];
-            if(mul && (*ans)[i+j]){
-                if( (*ans)[i+j+1] == 1){
-                    (*ans)[i+j+1] = 0;
-                    (*ans)[i+j+2] = 1;
-                }
-                else
-                    (*ans)[i+j+1] = 1;
+    int i, j, carry;
+    for(i = 0; i < size; i ++){
+        carry = 0;
+        for(j = 0; j < other.size; j ++){
+            mul = (*digits)[i] & (*other.digits)[j];            
+            int k = 1;
+            carry = mul & (*ans)[i+j];
+            while(carry){
+                carry = (*ans)[i+j+k];
+                (*ans)[i+j+k] = (*ans)[i+j+k] ? 0 : 1;
+                k++;
             }
             (*ans)[i + j] = ( mul ^ (*ans)[i + j]);
         }
@@ -280,8 +279,8 @@ void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient,
         if((*digits)[i] == 1) 
             r = r + 1;
         d = 0;
-        while(r.greater(other) || r.equal(other)){
-            r = r - other;
+        while(!other.absGreater(r)){
+            r = r.absSub(other);
             d = d + 1;
         }
     helper /= 2;
@@ -324,3 +323,94 @@ ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y){
     x.div(y, q, r);
     return r;
 }
+
+
+
+ReallyLongInt ReallyLongInt::recurExpo(const ReallyLongInt& e) const{
+    if(e == 0)
+        return ReallyLongInt(1);
+    else if((*e.digits)[0]){
+        return ((*this) * recurExpo(e/2))* recurExpo(e/2);}
+    else{
+        return recurExpo(e/2) * recurExpo(e/2);}
+}
+
+ReallyLongInt ReallyLongInt::exponent(const ReallyLongInt& e)const{
+    return recurExpo(e);
+}
+
+bool ReallyLongInt::isPrime() const{
+    if(*this <= 3 && *this > 1) //2,3
+        return true;
+    else if(!(*digits)[0] || *this == 1) // even number
+        return false;
+    else{
+        for(long long i = 3; i < *this; i += 2){
+            if((*this)%i == 0)
+                return false;
+        }
+        return true;
+    }
+}
+
+bool operator==(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.equal(y);
+}
+
+bool operator<(const ReallyLongInt& x, const ReallyLongInt& y){
+    return y.greater(x);
+}
+
+bool operator>(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.greater(y);
+}
+
+bool operator<=(const ReallyLongInt& x, const ReallyLongInt& y){
+    return (x<y)||(x==y); 
+}
+
+bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
+    return (y<x)||(x==y); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+int main(){
+    long long a;
+    long long b;
+    printf("a: ");
+    cin >> a;
+    printf("b : ");
+    cin >> b;
+    ReallyLongInt x(a);
+    ReallyLongInt y(b);
+    //ReallyLongInt* p = new ReallyLongInt();
+    //ReallyLongInt* q = new ReallyLongInt();
+    //ReallyLongInt z = numberTheory::extendedEulid(x, y, p, q);
+
+  //  cout << "ans: " << z.toString() << endl;
+    //cout << "p: " << p->toString() << endl;
+    //cout << "q: " << q->toString() << endl;
+
+
+   // bool z = (x>y);
+    //cout << z << endl;
+    ReallyLongInt ans = x.exponent(y);
+    cout << ans.toString() << endl;
+    //ReallyLongInt ans = x.exponent(y);
+    //ReallyLongInt y = -x;
+    //cout << "ans: " << ans.toString() << endl;
+
+}
+*/
