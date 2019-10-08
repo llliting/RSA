@@ -1,22 +1,30 @@
 CC = g++
 FLAGS = -Wall -O0
 DEBUG = --DDEBUG -g
-COVERAGE = --coverage
 
 all: keygen decrypt encrypt
 
 debug: rlidebug ntdebug
 
+coverage: rlicoverage 
+
 rlidebug: ReallyLongInt_TEST.cpp ReallyLongInt.o
-		$(CC) $(FLAGS) $(CATCHINC) -o ReallyLongIntTest ReallyLongInt_TEST.cpp ReallyLongInt.o
+		$(CC) $(FLAGS) -o ReallyLongIntTest ReallyLongInt_TEST.cpp ReallyLongInt.o
 		./ReallyLongIntTest
 
 ntdebug: numberTheory_TEST.cpp numberTheory.o ReallyLongInt.o
-		$(CC) $(FLAGS) $(CATCHINC) -o numberTheoryTest numberTheory_TEST.cpp numberTheory.o
+		$(CC) $(FLAGS) -o numberTheoryTest numberTheory_TEST.cpp numberTheory.o
 		./numberTheoryTest
 
-coverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
-		$(CC) $(CFLAGE) $(CATCHINC) $(COVERAGE) ReallyLongInt_TEST.cpp ReallyLongInt.cpp
+rlicoverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
+		$(CC) $(CFLAGE) --coverage ReallyLongInt_TEST.cpp ReallyLongInt.cpp
+		./a.out
+		gcov ReallyLongInt_TEST.cpp
+		gcov -f ReallyLongInt_TEST.cpp
+		gcov -b ReallyLongInt_TEST.cpp
+
+ntcoverage: numberTheory_TEST.cpp numberTheory.cpp ReallyLongInt.hpp
+		$(CC) $(CFLAGE) --coverage numberTheory_TEST.cpp numberTheory.cpp ReallyLongInt.cpp
 
 ReallyLongInt: ReallyLongInt.cpp
 		$(CC) $(FLAGS) -o ReallyLongInt.exe ReallyLongInt.cpp
@@ -35,7 +43,6 @@ decrypt: ReallyLongInt.cpp numberTheory.cpp
 
 clean:
 	rm -f *.o *.gcda *.info *.gcno *.gcov *.dSYM *.exe numberTheory_TEST coverage a.out ReallyLongInt_TEST *.txt
-
 
 
 
