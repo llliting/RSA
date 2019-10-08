@@ -245,19 +245,26 @@ ReallyLongInt ReallyLongInt::sub(const ReallyLongInt& other) const{
 ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
     vector<bool>* ans = new vector<bool> (size + other.size, false);
     bool mul;
-    for(unsigned int i = 0; i < size; i ++){
-        for(unsigned int j = 0; j < other.size; j ++){
-            mul = (*digits)[i] & (*other.digits)[j];
-            if(mul && (*ans)[i+j]){
-                if( (*ans)[i+j+1] == 1){
-                    (*ans)[i+j+1] = 0;
-                    (*ans)[i+j+2] = 1;
-                }
-                else
-                    (*ans)[i+j+1] = 1;
+    int i, j, carry;
+    for(i = 0; i < size; i ++){
+        carry = 0;
+        for(j = 0; j < other.size; j ++){
+            mul = (*digits)[i] & (*other.digits)[j];            
+            int k = 1;
+            carry = mul & (*ans)[i+j];
+            while(carry){
+                carry = (*ans)[i+j+k];
+                (*ans)[i+j+k] = (*ans)[i+j+k] ? 0 : 1;
+                k++;
             }
             (*ans)[i + j] = ( mul ^ (*ans)[i + j]);
         }
+        
+        /*cout << "i:" << i << endl;
+        for(int m = size+other.size - 1; m >= 0; m --)
+            cout << (*ans)[m]<< " ";
+        cout << "\n";
+        */
     }
     ReallyLongInt answer;
     answer.size = size + other.size;
@@ -339,10 +346,12 @@ ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y){
 ReallyLongInt ReallyLongInt::recurExpo(const ReallyLongInt& e) const{
     if(e == 0)
         return ReallyLongInt(1);
-    else if((*e.digits)[0])
-        return (*this) * recurExpo(e/2) * recurExpo(e/2);
-    else
-        return recurExpo(e/2) * recurExpo(e/2);
+    else if((*e.digits)[0]){
+        cout << "2: " << e.toString() << endl;
+        return ((*this) * recurExpo(e/2) )* recurExpo(e/2);}
+    else{
+        cout << "3: " << e.toString() << endl;
+        return recurExpo(e/2) * recurExpo(e/2);}
 }
 
 ReallyLongInt ReallyLongInt::exponent(const ReallyLongInt& e)const{
@@ -416,7 +425,7 @@ int main(){
 
    // bool z = (x>y);
     //cout << z << endl;
-    ReallyLongInt ans = x.exponent(y);
+    ReallyLongInt ans = x * y;
     cout << ans.toString() << endl;
     //ReallyLongInt ans = x.exponent(y);
     //ReallyLongInt y = -x;
