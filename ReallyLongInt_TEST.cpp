@@ -204,6 +204,29 @@ TEST_CASE("TESTING ReallyLongInt Class")
       REQUIRE(((a/b).toString()) == "-2");
       REQUIRE(((a%b).toString()) == "1");
     }
+
+  SECTION("exponent test")
+   {
+     ReallyLongInt a(2);
+     ReallyLongInt b(3);
+     INFO("exponent test fail")
+     REQUIRE((a.exponent(b)).toString() == "8");
+     REQUIRE((b.exponent(a)).toString() == "9");
+   }
+
+  SECTION("prime test")
+    {
+      ReallyLongInt a(2);
+      ReallyLongInt b(127);
+      ReallyLongInt c(8);
+      ReallyLongInt d(15);
+      INFO("prime test fail")
+      REQUIRE(a.isPrime());
+      REQUIRE(b.isPrime());
+      REQUIRE(!c.isPrime());
+      REQUIRE(!d.isPrime());
+      
+    } 
 }
 
 
