@@ -120,12 +120,6 @@ string ReallyLongInt::toStringBinary() const{
     return str;
 }
 
-
-
-
-
-
-
 void ReallyLongInt::removeLeadingZeros(void){
     for(int i = size-1; i >= 0; i--){
         if((*digits)[i] == 1){
@@ -259,12 +253,6 @@ ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
             }
             (*ans)[i + j] = ( mul ^ (*ans)[i + j]);
         }
-        
-        /*cout << "i:" << i << endl;
-        for(int m = size+other.size - 1; m >= 0; m --)
-            cout << (*ans)[m]<< " ";
-        cout << "\n";
-        */
     }
     ReallyLongInt answer;
     answer.size = size + other.size;
@@ -347,10 +335,8 @@ ReallyLongInt ReallyLongInt::recurExpo(const ReallyLongInt& e) const{
     if(e == 0)
         return ReallyLongInt(1);
     else if((*e.digits)[0]){
-        cout << "2: " << e.toString() << endl;
-        return ((*this) * recurExpo(e/2) )* recurExpo(e/2);}
+        return ((*this) * recurExpo(e/2))* recurExpo(e/2);}
     else{
-        cout << "3: " << e.toString() << endl;
         return recurExpo(e/2) * recurExpo(e/2);}
 }
 
@@ -403,7 +389,7 @@ bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
 
 
 
-
+/*
 
 int main(){
     long long a;
@@ -425,11 +411,11 @@ int main(){
 
    // bool z = (x>y);
     //cout << z << endl;
-    ReallyLongInt ans = x * y;
+    ReallyLongInt ans = x.exponent(y);
     cout << ans.toString() << endl;
     //ReallyLongInt ans = x.exponent(y);
     //ReallyLongInt y = -x;
     //cout << "ans: " << ans.toString() << endl;
 
 }
-
+*/
