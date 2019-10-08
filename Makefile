@@ -19,6 +19,10 @@ coverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
 ReallyLongInt: ReallyLongInt.cpp
 		$(CC) $(FLAGS) -o ReallyLongInt.exe ReallyLongInt.cpp
 
+numberTheory: numberTheory.cpp
+		$(CC) $(FLAGS) -o numberTheory.exe numberTheory.cpp
+
+
 keygen: keygen.cpp ReallyLongInt.cpp numberTheory.cpp
 		$(CC) $(FLAGS) -o keygen.exe keygen.cpp
 
@@ -37,6 +41,7 @@ cleantest:
 
 clean:
 	rm *.exe;
+
 
 
 
