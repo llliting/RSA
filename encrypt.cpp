@@ -30,15 +30,9 @@ int main(int argc, char *argv[]){
 
     char c;
 	while (text.get(c)){
-      unsigned long long a =(unsigned long long)c;
-      cout << "a:"  << a  << endl;
+      //unsigned long long a =(unsigned long long)c;
       ReallyLongInt x(a);
       ReallyLongInt y = (x.exponent(e)) % n;
-      cout << "y:" << y.toString() << endl;
-      cout << "ascii: " << stoi(y.toString()) << endl;
-      //encrypt << '0' + stoi(y.toString());
-      //cout << (char)stoi(y.toString());
-      //encrypt << (char)stoi(y.toString());
       encrypt << " " << y.toString() ;
     }
 
