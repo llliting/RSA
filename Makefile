@@ -6,14 +6,16 @@ all: keygen decrypt encrypt
 
 debug: rlidebug ntdebug
 
-coverage: rlicoverage 
+coverage: rlicov ntcov
+rlicov: rlicoverage rli_lcov
+ntcov: ntcoverage nt_lcov
 
 rlidebug: ReallyLongInt_TEST.cpp ReallyLongInt.o
-		$(CC) $(FLAGS) -o ReallyLongIntTest ReallyLongInt_TEST.cpp ReallyLongInt.o
+		$(CC) $(FLAGS) -o ReallyLongIntTest.exe ReallyLongInt_TEST.cpp ReallyLongInt.o
 		./ReallyLongIntTest
 
-ntdebug: numberTheory_TEST.cpp numberTheory.o ReallyLongInt.o
-		$(CC) $(FLAGS) -o numberTheoryTest numberTheory_TEST.cpp numberTheory.o
+ntdebug: numberTheory_TEST.cpp ReallyLongInt.o numberTheory.o
+		g++ numberTheory_TEST.cpp -o numberTheoryTest.exe
 		./numberTheoryTest
 
 rlicoverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
@@ -23,8 +25,25 @@ rlicoverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
 		gcov -f ReallyLongInt_TEST.cpp
 		gcov -b ReallyLongInt_TEST.cpp
 
-ntcoverage: numberTheory_TEST.cpp numberTheory.cpp ReallyLongInt.hpp
-		$(CC) $(CFLAGE) --coverage numberTheory_TEST.cpp numberTheory.cpp ReallyLongInt.cpp
+rli_lcov:
+		lcov --directory . --zerocounters
+		./a.out
+		lcov --directory . --capture --output-file rli.info
+		genhtml rli.info -o rli
+
+ntcoverage: numberTheory_TEST.cpp numberTheory.o ReallyLongInt.o
+		#$(CC) $(CFLAGE) --coverage numberTheory_TEST.cpp numberTheory.cpp ReallyLongInt.o
+		g++ --coverage numberTheory_TEST.cpp -o ntcov.out
+		./ntcov.out
+		gcov ReallyLongInt_TEST.cpp
+		gcov -f ReallyLongInt_TEST.cpp
+		gcov -b ReallyLongInt_TEST.cpp
+
+nt_lcov:
+		lcov --directory . --zerocounters
+		./ntcov.out
+		lcov --directory . --capture --output-file nt.info
+		genhtml nt.info -o nt
 
 ReallyLongInt: ReallyLongInt.cpp
 		$(CC) $(FLAGS) -o ReallyLongInt.exe ReallyLongInt.cpp
@@ -42,7 +61,8 @@ decrypt: ReallyLongInt.cpp numberTheory.cpp
 		$(CC) $(FLAGS) -o decrypt.exe decrypt.cpp
 
 clean:
-	rm -f *.o *.gcda *.info *.gcno *.gcov *.dSYM *.exe numberTheory_TEST coverage a.out ReallyLongInt_TEST *.txt
+	rm -f *.exe *.info *.out *.txt *.o *.gcno *.gcda
+	rm -r -f nt rli
 
 
 

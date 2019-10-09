@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN //This will make our main for us :)
 #include "catch.hpp"
-#include "numberTheory.hpp"
+#include "numberTheory.cpp"
 #include "ReallyLongInt.hpp"
 #include <iostream>
 #include <string>
