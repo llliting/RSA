@@ -376,22 +376,6 @@ bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
 
 
 
-/*
-
-int main () {
-    long long x,y;
-    cout << "a: ";
-    cin >> x;
-    cout << "b: " ;
-    cin >> y;
-    ReallyLongInt a(x);
-    ReallyLongInt b(y);
-    cout << "a/b: " << (a/b).toString() << endl;
-    cout << "a%b: " << (a%b).toString() << endl;
-
-
-}
-*/
 
 
 

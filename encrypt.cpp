@@ -30,7 +30,7 @@ int main(int argc, char *argv[]){
 
     char c;
 	while (text.get(c)){
-      //unsigned long long a =(unsigned long long)c;
+      unsigned long long a =(unsigned long long)c;
       ReallyLongInt x(a);
       ReallyLongInt y = (x.exponent(e)) % n;
       encrypt << " " << y.toString() ;

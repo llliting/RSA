@@ -28,27 +28,3 @@ ReallyLongInt numberTheory::extendedEuclid(const ReallyLongInt& a, const ReallyL
        return d;
     }
 }
-/*
-int main(){
-    ReallyLongInt* x = new ReallyLongInt();
-    ReallyLongInt* y = new ReallyLongInt();
-    long long at, bt;
-    cout << "a: " ;
-    cin >> at;
-    cout << "b: ";
-    cin >> bt;
-    cout << "\n";
-    ReallyLongInt a = ReallyLongInt(at);
-    ReallyLongInt b = ReallyLongInt(bt);
-    numberTheory nt;
-    ReallyLongInt ans = nt.extendedEuclid(a,b,x,y);
-    cout << "gcd: " << ans.toString() << endl; //<< " " << ans.toStringBinary() << endl;
-    cout << "x: " << x->toString() << endl ; // " " << x->toStringBinary() << endl;
-    cout << "y: " << y->toString() << endl ; //" " << y->toStringBinary() << endl;
-    //cout << (*x%*y).toString();
-
-
-
-
-}
-*/

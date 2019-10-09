@@ -29,18 +29,11 @@ int main(int argc, char *argv[]){
 
     char c;
 	while (!enctext.eof()){
-      //unsigned long long ytemp =(unsigned long long)c;
-      //cout << "c:"  << c << endl;
       string ytemp;
       enctext >> ytemp;
-      cout << "ytemp" << ytemp << endl;
       ReallyLongInt y(ytemp);
       ReallyLongInt x = (y.exponent(d)) % n;
-      //cout << "exp: " << y.exponent(d).toString();
-      cout << "x:" << x.toString() << endl;
-      cout << "ascii: " << stoi(x.toString()) << endl;
       decrypt << (char)stoi(x.toString());
-      //decrypt << '0' + stoi(x.toString());
     }
 
     enctext.close();
