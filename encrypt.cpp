@@ -26,20 +26,20 @@ int main(int argc, char *argv[]){
     kfile.close();
 
     ifstream text(argv[2]);
-	  ofstream encrypt(argv[3]);
+	ofstream encrypt(argv[3]);
 
     char c;
-	  while (text.get(c)){
+	while (text.get(c)){
       unsigned long long a =(unsigned long long)c;
       cout << "a:"  << a  << endl;
       ReallyLongInt x(a);
       ReallyLongInt y = (x.exponent(e)) % n;
-      cout << "exp: " << x.exponent(e).toString();
       cout << "y:" << y.toString() << endl;
       cout << "ascii: " << stoi(y.toString()) << endl;
       //encrypt << '0' + stoi(y.toString());
       //cout << (char)stoi(y.toString());
-      encrypt << (char)stoi(y.toString());
+      //encrypt << (char)stoi(y.toString());
+      encrypt << " " << y.toString() ;
     }
 
     text.close();

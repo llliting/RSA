@@ -28,13 +28,15 @@ int main(int argc, char *argv[]){
 	ofstream decrypt(argv[3]);
 
     char c;
-	while (enctext.get(c)){
-      unsigned long long ytemp =(unsigned long long)c;
-      cout << "c:"  << c << endl;
+	while (!enctext.eof()){
+      //unsigned long long ytemp =(unsigned long long)c;
+      //cout << "c:"  << c << endl;
+      string ytemp;
+      enctext >> ytemp;
       cout << "ytemp" << ytemp << endl;
       ReallyLongInt y(ytemp);
       ReallyLongInt x = (y.exponent(d)) % n;
-      cout << "exp: " << y.exponent(d).toString();
+      //cout << "exp: " << y.exponent(d).toString();
       cout << "x:" << x.toString() << endl;
       cout << "ascii: " << stoi(x.toString()) << endl;
       decrypt << (char)stoi(x.toString());

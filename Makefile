@@ -31,8 +31,8 @@ rli_lcov:
 		lcov --directory . --capture --output-file rli.info
 		genhtml rli.info -o rli
 
-ntcoverage: numberTheory_TEST.cpp numberTheory.o ReallyLongInt.o
-		#$(CC) $(CFLAGE) --coverage numberTheory_TEST.cpp numberTheory.cpp ReallyLongInt.o
+ntcoverage: numberTheory_TEST.cpp numberTheory.cpp ReallyLongInt.cpp
+		#$(CC) $(CFLAGE) --coverage numberTheory_TEST.cpp numberTheory.cpp ReallyLongInt.cpp
 		g++ --coverage numberTheory_TEST.cpp -o ntcov.out
 		./ntcov.out
 		gcov ReallyLongInt_TEST.cpp

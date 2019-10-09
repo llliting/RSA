@@ -239,7 +239,7 @@ ReallyLongInt ReallyLongInt::sub(const ReallyLongInt& other) const{
 ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
     vector<bool>* ans = new vector<bool> (size * other.size, false);
     bool mul;
-    int i, j, carry;
+    unsigned int i, j, carry;
     for(i = 0; i < size; i ++){
         carry = 0;
         for(j = 0; j < other.size; j ++){
@@ -288,7 +288,7 @@ void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient,
     q = q + d;
     }
     quotient = q;
-    remainder = r;
+    remainder = isNeg ? -r : r;
 }
 
 void ReallyLongInt::div (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
@@ -376,10 +376,22 @@ bool operator>=(const ReallyLongInt& x, const ReallyLongInt& y){
 
 
 
+/*
+
+int main () {
+    long long x,y;
+    cout << "a: ";
+    cin >> x;
+    cout << "b: " ;
+    cin >> y;
+    ReallyLongInt a(x);
+    ReallyLongInt b(y);
+    cout << "a/b: " << (a/b).toString() << endl;
+    cout << "a%b: " << (a%b).toString() << endl;
 
 
-
-
+}
+*/
 
 
 

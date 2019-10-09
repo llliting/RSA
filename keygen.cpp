@@ -17,6 +17,11 @@ int main(int argc, char *argv[]){
     ReallyLongInt a(stoll(argv[1]));
     ReallyLongInt b(stoll(argv[2]));
 
+    if (argc != 5) {
+        cout << "Wrong Number of Command Line Arguments Passed";
+        return 0;
+    }
+
     if(!a.isPrime() || !b.isPrime()){
         cout << "at least one of the inputs is not a prime number" << endl;
         return 1;
