@@ -202,7 +202,7 @@ TEST_CASE("TESTING ReallyLongInt Class")
 
       a = -a;
       REQUIRE(((a/b).toString()) == "-2");
-      REQUIRE(((a%b).toString()) == "1");
+      REQUIRE(((a%b).toString()) == "6");
     }
 
   SECTION("exponent test")
@@ -218,6 +218,7 @@ TEST_CASE("TESTING ReallyLongInt Class")
     {
       ReallyLongInt a(2);
       ReallyLongInt b(127);
+      REQUIRE(b>=a);
       ReallyLongInt c(8);
       ReallyLongInt d(15);
       INFO("prime test fail")
