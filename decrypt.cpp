@@ -19,15 +19,12 @@ int main(int argc, char *argv[]){
     kfile>>n_str;
     ReallyLongInt d(stoll(d_str));
     ReallyLongInt n(stoll(n_str));
-    cout << "d:" << d.toString() << endl;
-    cout << "n:" << n.toString() << endl;
 
     kfile.close();
 
     ifstream enctext(argv[2]);
 	ofstream decrypt(argv[3]);
 
-    char c;
 	while (!enctext.eof()){
       string ytemp;
       enctext >> ytemp;

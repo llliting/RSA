@@ -22,7 +22,6 @@ int main(int argc, char *argv[]){
     kfile>>n_str;
     ReallyLongInt e(stoll(e_str));
     ReallyLongInt n(stoll(n_str));
-    cout << "e: " << e.toString() << " n:" << n.toString() << endl;
     kfile.close();
 
     ifstream text(argv[2]);
