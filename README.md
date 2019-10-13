@@ -20,12 +20,12 @@ $ make coverage
 **to run keygen:**
 
 ```
- $ ./keygen <prime#1> <prime#2> <publickeyfile> <privatekeyfile>
+ $ ./keygen <primenumber1> <primenumber2> <publickeyfile> <privatekeyfile>
 ```
 **to run encrypt:**
 
 ```
- $ ./keygen.exe <prime#1> <prime#2> <publickeyfile> <privatekeyfile>
+ $ ./keygen.exe <primenumber1> <primenumber2> <publickeyfile> <privatekeyfile>
 ```
 
 **to run decrypt:**
