@@ -13,23 +13,27 @@ TEST_CASE("TESTING ReallyLongInt Class")
      
       test_ReallyLongInt = new ReallyLongInt();
       INFO("Using default constructor") //Displayed if fails
-      REQUIRE((test_ReallyLongInt->toString()) == "0");
+      ReallyLongInt ans(0);
+      REQUIRE(test_ReallyLongInt->equal(ans));
       delete test_ReallyLongInt;
 
       test_ReallyLongInt = new ReallyLongInt(-4294967296);
       INFO("Using long long constructor") //Displayed if fails
-      REQUIRE((test_ReallyLongInt->toString()) == "-4294967296");
+      ans = ReallyLongInt(-4294967296);
+      REQUIRE(test_ReallyLongInt->equal(ans));
       delete test_ReallyLongInt;
 
       test_ReallyLongInt = new ReallyLongInt();
       INFO("Using long long constructor") //Displayed if fails
-      REQUIRE((test_ReallyLongInt->toStringBinary()) == "0");
+      ans = ReallyLongInt(0);
+      REQUIRE(test_ReallyLongInt->equal(ans));
       delete test_ReallyLongInt;
 
       ReallyLongInt other("-4294967296");
       ReallyLongInt test(other);
       INFO("Using copy constructor") //Displayed if fails
-      REQUIRE(test.toString() == "-4294967296");
+      ans = ReallyLongInt(-4294967296);
+      REQUIRE(test_ReallyLongInt->equal(ans));
     }
     
   SECTION("Equal test")
@@ -137,37 +141,50 @@ TEST_CASE("TESTING ReallyLongInt Class")
       ReallyLongInt a(3);
       ReallyLongInt b(1);
       ReallyLongInt c;
-      REQUIRE(((a+b).toString()) == "4");
+      ReallyLongInt ans(4);
+      REQUIRE((a+b).equal(ans));
       
       a = ReallyLongInt(1); //1 + 1
       b = ReallyLongInt(3);
-      REQUIRE(((a+b).toString()) == "4");
+      REQUIRE((a+b).equal(ans));
 
       a = ReallyLongInt(7);
       b = ReallyLongInt(7);
-      REQUIRE(((a+b).toString()) == "14");
+      ans = ReallyLongInt(14);
+      REQUIRE((a+b).equal(ans));
 
       INFO("pos - pos fail") //Displayed if fails
-      REQUIRE(((a-b).toString()) == "0");
+      ans = ReallyLongInt(0);
+      REQUIRE((a-b).equal(ans));
 
       a = ReallyLongInt(8);
       b = ReallyLongInt(7);
-      REQUIRE(((a-b).toString()) == "1");
+ans = ReallyLongInt(1);
+      REQUIRE((a-b).equal(ans));
 
       a = ReallyLongInt(4);
       b = ReallyLongInt(8);
-      REQUIRE(((a-b).toString()) == "-4");
+      ans = ReallyLongInt(-4);
+      REQUIRE((a-b).equal(ans));
 
       INFO("pos neg fail")
       a = ReallyLongInt(-4);//neg and pos
-      REQUIRE(((a-b).toString()) == "-12");
-      REQUIRE(((a+b).toString()) == "4");
+      ans = ReallyLongInt(-12);
+      REQUIRE((a-b).equal(ans));
+      ans = ReallyLongInt(4);
+      REQUIRE((a+b).equal(ans));
+
       b = ReallyLongInt(-2);//neg and neg
-      REQUIRE(((a-b).toString()) == "-2");
-      REQUIRE(((a+b).toString()) == "-6");
+      ans = ReallyLongInt(-2);
+      REQUIRE((a-b).equal(ans));
+      ans = ReallyLongInt(-6);
+      REQUIRE((a+b).equal(ans));
+
       a = ReallyLongInt(4);//pos and neg
-      REQUIRE(((a-b).toString()) == "6");
-      REQUIRE(((a+b).toString()) == "2");
+      ans = ReallyLongInt(6);
+      REQUIRE((a-b).equal(ans));
+      ans = ReallyLongInt(2);
+      REQUIRE((a+b).equal(ans));      
     }
 
   SECTION("mult test")
@@ -175,17 +192,21 @@ TEST_CASE("TESTING ReallyLongInt Class")
       ReallyLongInt a(7);
       ReallyLongInt b(7);
       INFO("multiplication fail")
-      REQUIRE(((a*b).toString()) == "49");
+      ReallyLongInt ans(49);
+      REQUIRE((a*b).equal(ans));
 
       a = ReallyLongInt(2);
-      REQUIRE(((a*b).toString()) == "14");
+      ans = ReallyLongInt(14);
+      REQUIRE((a*b).equal(ans));
 
       b = ReallyLongInt(2);
       a = ReallyLongInt(15);
-      REQUIRE(((a*b).toString()) == "30");
+      ans = ReallyLongInt(30);
+      REQUIRE((a*b).equal(ans));
 
       a = -a;
-      REQUIRE(((a*b).toString()) == "-30");
+      ans = ReallyLongInt(-30);
+      REQUIRE((a*b).equal(ans));    
     }
 
   SECTION("div test")
@@ -210,8 +231,10 @@ TEST_CASE("TESTING ReallyLongInt Class")
      ReallyLongInt a(2);
      ReallyLongInt b(3);
      INFO("exponent test fail")
-     REQUIRE((a.exponent(b)).toString() == "8");
-     REQUIRE((b.exponent(a)).toString() == "9");
+     ReallyLongInt ans = ReallyLongInt(8);
+     REQUIRE((a.exponent(b)).equal(ans));
+     ans = ReallyLongInt(9);
+     REQUIRE((b.exponent(a)).equal(ans));
    }
 
   SECTION("prime test")

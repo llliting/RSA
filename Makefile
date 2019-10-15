@@ -12,11 +12,11 @@ ntcov: ntcoverage nt_lcov
 
 rlidebug: ReallyLongInt_TEST.cpp ReallyLongInt.o
 		$(CC) $(FLAGS) -o ReallyLongIntTest.exe ReallyLongInt_TEST.cpp ReallyLongInt.o
-		./ReallyLongIntTest
+		./ReallyLongIntTest.exe
 
 ntdebug: numberTheory_TEST.cpp ReallyLongInt.o numberTheory.o
 		g++ numberTheory_TEST.cpp -o numberTheoryTest.exe
-		./numberTheoryTest
+		./numberTheoryTest.exe
 
 rlicoverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
 		$(CC) $(CFLAGE) --coverage ReallyLongInt_TEST.cpp ReallyLongInt.cpp
