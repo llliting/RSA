@@ -5,7 +5,7 @@ This project first builds a "ReallyLongInt" data type that can hold binary numbe
 
 ## Running the program  
 
-###Keygen
+### Keygen
 The first step of the encryption/decryption process is to generate public and private keys. The keygen file takes in two prime numbers to calculate the keys and store the keys in two separate files. 
 <br />***To run keygen:***
 
@@ -14,7 +14,8 @@ $ make
 $ ./keygen.exe <primenumber1> <primenumber2> <publickeyfile> <privatekeyfile>
 ```
 
-###Encrypt
+
+### Encrypt
 The encryption program takes in the public key file and an input text file. Then it runs the encryption process and stores the output cipher text.
 <br />***To run encrypt:***
 
@@ -22,7 +23,7 @@ The encryption program takes in the public key file and an input text file. Then
 $ ./encrypt.exe <publickeyfile> <inputtextfile> <outputcipherfile> 
 ``` 
 
-###Decrypt
+### Decrypt
 Similar to the encryption, the decryption takes in the private key file and decodes the ciphertext.
 <br />***To run decrypt:***
 
@@ -30,7 +31,7 @@ Similar to the encryption, the decryption takes in the private key file and deco
 $ ./decrypt.exe <privatekeyfile> <cipherfile> <decryptedfile> 
 ``` 
 
-###Unit Testing
+### Unit Testing
 Unit tests with Catch2 are utilized to test the project's correctness. 
 
 In terminal, type in `make coverage` to run the coverage tests of "ReallyLongInt.cpp" and "numberTheory.cpp." The coverage test result are stored in rli and nt folders as "index.html."
