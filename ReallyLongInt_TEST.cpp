@@ -33,7 +33,7 @@ TEST_CASE("TESTING ReallyLongInt Class")
       ReallyLongInt test(other);
       INFO("Using copy constructor") //Displayed if fails
       ans = ReallyLongInt(-4294967296);
-      REQUIRE(test_ReallyLongInt->equal(ans));
+      REQUIRE(test.equal(ans));
     }
     
   SECTION("Equal test")
@@ -213,17 +213,24 @@ ans = ReallyLongInt(1);
     {
       ReallyLongInt a(7);
       ReallyLongInt b(7);
+      ReallyLongInt ans(1);
       INFO("division test fail")
-      REQUIRE(((a/b).toString()) == "1");
-      REQUIRE(((a%b).toString()) == "0");
+      REQUIRE((a/b).equal(ans));  
+      ans = ReallyLongInt(0);  
+      REQUIRE((a%b).equal(ans)); 
 
       a = ReallyLongInt(15);
-      REQUIRE(((a/b).toString()) == "2");
-      REQUIRE(((a%b).toString()) == "1");
+      ans = ReallyLongInt(2);
+      REQUIRE((a/b).equal(ans));  
+      ans = ReallyLongInt(1);  
+      REQUIRE((a%b).equal(ans)); 
+\
 
       a = -a;
-      REQUIRE(((a/b).toString()) == "-2");
-      REQUIRE(((a%b).toString()) == "6");
+      ans = ReallyLongInt(-2);
+      REQUIRE((a/b).equal(ans));  
+      ans = ReallyLongInt(6);  
+      REQUIRE((a%b).equal(ans)); 
     }
 
   SECTION("exponent test")
