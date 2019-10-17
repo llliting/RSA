@@ -49,7 +49,7 @@ ReallyLongInt::ReallyLongInt(const ReallyLongInt& other){
     size = other.size;
     digits = new vector<bool> (size, false);
     isNeg = other.isNeg;
-    for(unsigned int i = 0; i < size; i ++)
+    for(unsigned int i = 0; i < size; i++)
         (*digits)[i] = (*(other.digits))[i];
 }
 
@@ -69,10 +69,8 @@ bool ReallyLongInt::equal(const ReallyLongInt& other) const{
 }
 
 bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
-    if(other.size > size)
-        return 0;
-    else if(other.size < size)
-        return 1;
+    if(other.size != size)
+        return (other.size < size);
     else{
         for(unsigned int i = size - 1; i > 0; i --){
             if(((*digits)[i] == 1) && ((*(other.digits))[i] == 0))            
@@ -85,10 +83,8 @@ bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
 }
 
 bool ReallyLongInt::greater(const ReallyLongInt& other) const{
-    if(isNeg == true && other.isNeg == false)
-        return false;
-    else if(isNeg == false && other.isNeg == true)
-        return true;
+    if(isNeg != other.isNeg)
+        return other.isNeg;
     else if(isNeg == true && other.isNeg == true && other.equal(*this))
         return false;
     else 
@@ -99,7 +95,7 @@ string ReallyLongInt::toString() const{
     unsigned long long num = 0;
     unsigned long long curr = 1;
     for(unsigned int i = 0; i < size; i++){
-        num += ((*digits)[i] == 1 ? curr:0);
+        num += ((*digits)[i] == 1 ? curr : 0);
         curr *= 2;
     }
     return (isNeg ? ("-" + to_string(num)) : to_string(num));
@@ -165,12 +161,9 @@ ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
     unsigned int i = 0;
     for(; i < ans.size ; i ++){
         (*ans.digits)[i] = carry ^ (*digits)[i] ^ (*(other.digits))[i];
-        if((((*digits)[i] & (*other.digits)[i]) == 1) 
+        carry = ((((*digits)[i] & (*other.digits)[i]) == 1) 
             || ((carry & (*(other.digits))[i]) == 1) 
-            || (((*digits)[i] & carry ) == 1))
-            carry = 1;
-        else
-            carry = 0;
+            || (((*digits)[i] & carry ) == 1));
     }
     if(carry == 1) 
         (*ans.digits)[i] = 1;
@@ -256,10 +249,7 @@ ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
 }
 
 ReallyLongInt ReallyLongInt::mult(const ReallyLongInt& other)const{
-    if(isNeg == other.isNeg)
-        return absMult(other);
-    else 
-        return -absMult(other);
+    return (isNeg == other.isNeg) ? absMult(other) : -absMult(other);
 }
 
 void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
@@ -293,34 +283,6 @@ void ReallyLongInt::div (const ReallyLongInt& other, ReallyLongInt& quotient, Re
         quotient = -quotient;
 }
 
-ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y){
-    return x.mult(y);
-}
-
-ReallyLongInt operator+(const ReallyLongInt& x, const ReallyLongInt& y){
-    return x.add(y);
-}
-
-ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y){
-    return x.sub(y);
-}
-
-ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y){
-    ReallyLongInt q;
-    ReallyLongInt r;
-    x.div(y, q, r);
-    return q;
-}
-
-ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y){
-    ReallyLongInt q;
-    ReallyLongInt r;
-    x.div(y, q, r);
-    return r;
-}
-
-
-
 ReallyLongInt ReallyLongInt::recurExpo(const ReallyLongInt& e) const{
     if(e == 0)
         return ReallyLongInt(1);
@@ -346,6 +308,31 @@ bool ReallyLongInt::isPrime() const{
         }
         return true;
     }
+}
+ReallyLongInt operator+(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.add(y);
+}
+
+ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.sub(y);
+}
+
+ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.mult(y);
+}
+
+ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y){
+    ReallyLongInt q;
+    ReallyLongInt r;
+    x.div(y, q, r);
+    return q;
+}
+
+ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y){
+    ReallyLongInt q;
+    ReallyLongInt r;
+    x.div(y, q, r);
+    return r;
 }
 
 bool operator==(const ReallyLongInt& x, const ReallyLongInt& y){
