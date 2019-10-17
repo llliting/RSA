@@ -5,9 +5,6 @@
 
 using namespace std;
 
-
-
-
 ReallyLongInt numberTheory::extendedEuclid(const ReallyLongInt& a, const ReallyLongInt& b, 
                             ReallyLongInt* output_x, ReallyLongInt* output_y){
     if(b == 0){
