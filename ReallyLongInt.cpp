@@ -9,20 +9,17 @@
 
 using namespace std;
 void ReallyLongInt::init(long long num){
-    //update isNeg
     if(num >= 0)
         isNeg = false;
     else{
         isNeg = true;
         num *= -1;
     }
-    //initialize and update size
     size = 16;
     unsigned int bits = (unsigned int) log2(num);
     while(bits >= size){
         size = size * 2;
     }
-    //fill the digits
     digits = new vector<bool> (size, false);
     unsigned int index = 0;
     while(num > 0){
@@ -61,9 +58,7 @@ ReallyLongInt::~ReallyLongInt(){
 }
 
 bool ReallyLongInt::equal(const ReallyLongInt& other) const{
-    if(isNeg != other.isNeg)
-        return false;
-    else if(size != other.size)
+    if(isNeg != other.isNeg || size!=other.size)
         return false;
     else{
         for(unsigned int i = 0; i < size; i ++)
@@ -85,9 +80,7 @@ bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
             else if(((*digits)[i] == 0) && ((*(other.digits))[i] == 1))
                 return 0;
         }
-        if(((*digits)[0] == 1) && ((*(other.digits))[0] == 0))
-            return 1;
-        return 0;
+        return ((*digits)[0] == 1) && ((*(other.digits))[0] == 0);
     }
 }
 
