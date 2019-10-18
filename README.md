@@ -29,3 +29,7 @@ $ ./decrypt.exe <privatekeyfile> <cipherfile> <decryptedfile>
 Unit tests with Catch2 are utilized to test the project's correctness. 
 <br />In terminal, type in `make coverage` to run the coverage tests of "ReallyLongInt.cpp" and "numberTheory.cpp." The coverage test result are stored in rli and nt folders as "index.html."
 <br />To use the debug mode, type in `make debug`.
+
+
+## Current Issues
+* when the user tries to input two prime numbers smaller than 11 and 13, the decryption process does not work. 

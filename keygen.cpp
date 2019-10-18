@@ -34,9 +34,8 @@ int main(int argc, char *argv[]){
     n = a * b;
     t = (a-1) * (b-1);
 
-    ReallyLongInt* x = new ReallyLongInt();
-    ReallyLongInt* y = new ReallyLongInt();
-    ReallyLongInt gcd;
+
+    ReallyLongInt x, y, gcd;
     ReallyLongInt d;
     ReallyLongInt e(2);
     numberTheory nt;
@@ -45,7 +44,7 @@ int main(int argc, char *argv[]){
         if(gcd == 1)
             break;       
     }
-    d = *x;
+    d = x;
     while(d < 0)////////?? while or if
         d = d + t;
 
@@ -54,7 +53,5 @@ int main(int argc, char *argv[]){
 
     pkfile.close();
     skfile.close();
-    delete x;
-    delete y;
     return 0;
 }

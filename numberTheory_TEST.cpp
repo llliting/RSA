@@ -10,13 +10,12 @@ TEST_CASE("TESTING numberTheory Class")
 {
     ReallyLongInt a(3);
     ReallyLongInt b(13);
-    ReallyLongInt* x = new ReallyLongInt();
-    ReallyLongInt* y = new ReallyLongInt();
+    ReallyLongInt x,y;
     numberTheory nt;
     ReallyLongInt ans = nt.extendedEuclid(a,b,x,y);
-
-
-    REQUIRE(ans.toString() == "1");
-    REQUIRE(x->toString() == "-4");
-    REQUIRE(y->toString() == "1");
+    ReallyLongInt check(1);
+    REQUIRE(ans.equal(check));
+    REQUIRE(y.equal(check));
+    check = ReallyLongInt(-4);
+    REQUIRE(x.equal(check));
 }

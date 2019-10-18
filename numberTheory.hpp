@@ -11,7 +11,7 @@ class numberTheory
 {   
     public: 
     ReallyLongInt extendedEuclid(const ReallyLongInt& a, const ReallyLongInt& b, 
-                            ReallyLongInt* output_x, ReallyLongInt* output_y);
+                            ReallyLongInt& x, ReallyLongInt& y);
 };
 
 #endif
