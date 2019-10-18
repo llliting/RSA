@@ -288,10 +288,14 @@ void ReallyLongInt::absDiv (const ReallyLongInt& other, ReallyLongInt& quotient,
     q = q + d;
     }
     quotient = q;
+    
     if(isNeg)
         remainder = other.isNeg ? -r : (other.absSub(r));
     else
         remainder = other.isNeg ? -(other.absSub(r)) : r;
+
+    if(equal(other) || equal(-other) || remainder.equal(0))
+        remainder = 0;
 }
 
 void ReallyLongInt::div (const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
