@@ -33,3 +33,4 @@ Unit tests with Catch2 are utilized to test the project's correctness.
 
 ## Current Issues
 * when the user tries to input two prime numbers smaller than 11 and 13, the decryption process does not work. 
+* number theory cannot correctly calculate x and y  when the two numbers include at least one negative number.
