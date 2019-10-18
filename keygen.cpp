@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
             break;       
     }
     d = x;
-    while(d < 0)////////?? while or if
+    while(d < 0)
         d = d + t;
 
     pkfile << e.toString() << " " << n.toString() << endl;

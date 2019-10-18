@@ -224,7 +224,7 @@ TEST_CASE("TESTING ReallyLongInt Class")
         REQUIRE((a/b).equal(ans));
         ans = ReallyLongInt(1);
         REQUIRE((a%b).equal(ans));
-        \
+        
         
         a = -a;
         ans = ReallyLongInt(-2);
